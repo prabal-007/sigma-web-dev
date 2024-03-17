@@ -1,0 +1,91 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.container-tra {
+    border: 2px  solid #ccc;
+    width: 800px;
+    height: 600px;
+    margin: 50px;
+    background-color: antiquewhite;
+}
+
+.container-ani {
+    border: 2px  solid #ccc;
+    width: 800px;
+    height: 600px;
+    margin: 50px;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: space-around;
+    align-items: e;
+
+}
+
+.ball {
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    transition-property: background-color, transform;
+    transition-duration: 5s;
+    transition-timing-function: linear(0 0%, 1.11 64.71%);
+    /* transition-delay: 1s; */
+    /* transition: all 3s ease-in-out 1s; */
+}
+
+.translate{
+    transform: translateY(70vh) translateX(70vh) scale(1);
+    background-color: blue;
+}
+
+.box1 {
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    animation-name: box1;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes box1 {
+    0% {
+        transform: translateY(500px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+    
+}
+
+.box2 {
+    position: relative;
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(255, 208, 0);
+    animation-name: box2;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+
+@keyframes box2 {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(500px);
+    }
+    
+}
