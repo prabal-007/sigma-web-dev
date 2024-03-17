@@ -42,7 +42,7 @@ main {
 }
 
 .translate{
-    transform: translateY(70vh) translateX(70vh) scale(1);
+    transform: translateY(55vh) translateX(35vw) scale(1);
     background-color: blue;
 }
 
@@ -88,4 +88,44 @@ main {
         transform: translateY(500px);
     }
     
+}
+
+.container-new {
+    position: relative;
+    height: 80vh;
+    width: 70vw;
+    background-color: antiquewhite;
+    margin: 50px;
+    
+}
+
+.ball1 {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(255, 208, 0);
+    border-radius: 50px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    animation: aniX 3s linear infinite, aniY 0.6s ease-out infinite alternate;
+}
+
+h2 {
+    padding: 40px;
+}
+
+@keyframes aniX {
+    from {
+        left: 0;
+    } to {
+        left: 80%;
+    }
+}
+
+@keyframes aniY {
+    from {
+        bottom: 0;
+    } to {
+        bottom: 70%;
+    }
 }
