@@ -30,8 +30,6 @@ body {
 .logo {
     height: 80px;
     width: 145px;
-    /* padding: 0px 0px 0px 170px; */
-    /* margin: 0px; */
     position: relative;
     z-index: 10;
 }
@@ -43,19 +41,17 @@ body {
     max-width: 80vw;
     justify-content: space-between;
     height: 62px;
-    /* padding: 11px 200px 0px 170px; */
 }
 
 .navbtn{
-    /* padding: 10px; */
     padding: 5px 10px;
     color: white;
     background-color: red;
     border-radius: 5px;
-    /* font-weight: bold; */
     position: relative;
     z-index: 10;
     font-size: 15px;
+    border: #302f2f solid thin;
 }
 
 .navbtns :nth-child(1) {
@@ -106,12 +102,9 @@ body {
 input {
     background-color: rgba(23,23,23, .7);
     border: 1px solid rgba(252, 252, 252, 0.3);
-    /* margin: 10px; */
-    /* padding: 18px 18px 19px 10px; */
     font-size: 16px;
     font-weight: 600;
     padding: 10px 172px 10px 15px;
-    /* color:transparent; */
 }
 
 .btns {
@@ -119,9 +112,6 @@ input {
     color: white;
     background-color: red;
     border-radius: 5px;
-    
-    /* margin-top: 0px;
-    margin-left: .05rem; */
     padding: 10px  21px;
     font-size: 24px;
     font-weight: 500;
@@ -129,20 +119,23 @@ input {
 
 .saprator {
     height: 9px;
-    background-color: gray;
-    border-width: 0%;
+    background-color: rgb(36, 36, 36);
+}
+
+.saprator2 {
+    height: 9px;
+    background-color: rgb(36, 36, 36);
+    margin-top: 65vh
 }
 
 .section2 {
     height: 100vh;
     display: flex;
-    /* flex-direction: row; */
+    flex-direction: row;
     justify-content: center;
-    /* align-items: center; */
     gap: 10px;
     position: relative;
     height: 133px;
-    /* background-color: aliceblue; */
 }
 
 .box2 {
@@ -153,21 +146,156 @@ input {
     padding-top: 180px;
 }
 
-.box2 :nth-child(1) {
+.box2 >:nth-child(1) {
     font-size: 48px;
     font-weight: 900;
 }
 
-.box2 :nth-child(2) {
+.box2 >:nth-child(2) {
     font-size: 24px;
     font-weight: 400;
 }
 
-.box2 :nth-child(3) {
+.box2 >:nth-child(3) {
     font-size: 24px;
     font-weight: 400;
 }
 
 .box3 {
     padding: 40px;
+}
+
+.box3 img {
+    position: relative;
+    z-index: 1;
+}
+
+.box3 video {
+    top: 134px;
+    position: absolute;
+    right: 246px;
+    width: 468px;
+}
+
+.section3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.phimg {
+    margin-left: 130px;
+}
+.card {
+    position: relative;
+    height: 100px;
+    width: 332px;
+    background-color: rgb(4, 4, 4);
+    left: 280px;
+    top: -155px;
+    border: gray solid 2px;
+    border-radius: 15px;
+    display: flex;
+
+}
+
+.card img{
+    padding: 12px;
+    width: 50px;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-content :nth-child(1) {
+    font-weight: 500;
+}
+
+.card-content :nth-child(2) {
+    color: rgb(0, 113, 235);
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.box6 {
+    padding: 82px;
+}
+
+.saprator3 {
+    background-color: antiquewhite;
+}
+
+.box8 video {
+    width: 388px;
+    right: 312px;
+    top: 95px;
+}
+
+.box10 {
+    margin-right: 192px;
+}
+
+.box10 :nth-child(1){
+    font-size: 48px;
+    font-weight: 900;
+}
+
+.box10 :nth-child(2){
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.faq {
+    display: flex;
+    flex-direction: column;
+    padding: 34px;
+    color: white;
+}
+
+.faq h2{
+    text-align: center;
+    font-size: 48px;
+    font-weight: 900;
+    padding: 50px 0px 10px 0px;
+}
+
+.faqbox {
+    background-color: #302f2f;
+    display: flex;
+    margin: 10px 210px;
+    padding: 22px;
+    justify-content: space-between;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.faq h3 {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 35px 0px 15px 0px;
+}
+
+footer {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: space-around;
+    padding: 40px;
+}
+
+.f1 ul li{
+    padding: 5px;
+    list-style: none;
+}
+
+.f1 button{
+    background-color: rgba(33, 33, 33, 0.8);
+    padding: 5px 15px;
+    border: #444343 solid thin;
 }
