@@ -15,4 +15,5 @@ boxes.forEach(box => {
     let bg = getRandomColor();
     box.style.color = color;
     box.style.background = bg;
+    box.innerHTML = color;
 });
