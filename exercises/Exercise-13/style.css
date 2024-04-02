@@ -1,0 +1,34 @@
+#imgspan {
+    margin-left: -40px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: rgb(72, 72, 69);
+    padding: 3px;
+    border-radius: 5px;
+    position: absolute;
+    top: 85px;
+    left: 190px;
+}
+
+h3 {
+    font-weight: bolder;
+}
+
+img {
+    width: 175px;
+    position: relative;
+}
+
+.card {
+    padding: 10px;
+    border-radius: 5px;
+    width: 915px;
+    gap: 12px;
+    margin: 10px;
+    position: relative;
+}
+
+.c-data {
+    color: rgb(180, 182, 182);
+}
