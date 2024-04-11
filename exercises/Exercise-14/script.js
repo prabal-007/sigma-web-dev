@@ -37,7 +37,7 @@ async function main() {
         await delayDot(i);
     }
     one.innerHTML = a + '✓DONE'; // Checkmark Emoji
-    await delay(randomNum(3));
+    await delay(randomNum());
     let b = 'Reading your files';
     for (let i = 0; i<9; i++) {
         two.innerHTML = b;
@@ -46,7 +46,7 @@ async function main() {
     }
     two.innerHTML = b + '✓DONE';
     
-    await delay(randomNum(3));
+    await delay(randomNum());
     let c = 'Passowrd files detected...';
     for (let i = 0; i<9; i++) {
         three.innerHTML = c;
@@ -55,7 +55,7 @@ async function main() {
     }
     three.innerHTML = c + '✓DONE';
     
-    await delay(randomNum(3));
+    await delay(randomNum());
     let d = 'Sending all password and personal files to server...';
     for (let i = 0; i<7; i++) {
         four.innerHTML = d;
@@ -65,7 +65,7 @@ async function main() {
     four.innerHTML = d + '✓DONE';
     alert("HACKING COMPLETE");
 
-    await delay(randomNum(3));
+    await delay(randomNum());
     let e = 'Cleaning up...';
     for (let i = 0; i<5; i++) {
         five.innerHTML = e;
