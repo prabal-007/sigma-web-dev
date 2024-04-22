@@ -176,9 +176,12 @@ body {
 .playbar {
     position: fixed;
     bottom: 20px;
-    background-color: rgb(12, 33, 12);
-    width: 75vw;
+    filter: invert(1);
+    background-color: #dad5d5;
+    border-radius: 30px;
+    width: 70vw;
     padding: 12px;
+    height: 34px;
 }
 
 .songsButton{
@@ -187,17 +190,17 @@ body {
     gap: 15px;
 }
 
-.songlist{
+.songList{
     margin: 32px 0px;
     height: 344px;
     overflow: auto;
 }
 
-.songlist ul{
+.songList ul{
     padding: 0px 12px;
 }
 
-.songlist ul li{
+.songList ul li{
     list-style-type: decimal;
     display: flex;
     justify-content: space-between;
@@ -225,5 +228,25 @@ body {
 .info{
     font-size: 14px;
     width: 140px;
+}
 
+.seekbar {
+    height: 2px;
+    width: 96%;
+    border: 2px solid black;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 5px;
+    margin: 6px;
+}
+
+.circle {
+    width: 13px;
+    height: 13px;
+    border-radius: 10px;
+    background-color: black;
+    position: relative;
+    bottom: 6px;
+    left: 0%;
+    transition: left 05s;
 }
