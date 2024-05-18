@@ -1,6 +1,16 @@
 console.log('lets write Javascript now..');
 let currentSong = new Audio();
 
+function sceToMins(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    const formatedMins = String(mins).padStart(2, '0');
+    const formatedSecs = String(secs).padStart(2, '0');
+
+    return `${formatedMins}:${formatedSecs}`;
+
+}
+
 async function getSongs() {
     let a = await fetch('http://127.0.0.1:3000/exercises/Spotify-clone/songs/');
     let response = await a.text();
@@ -20,10 +30,16 @@ async function getSongs() {
     return songs;
 }
 
-function playMusic(tarck) {
+function playMusic(tarck, pause = false) {
     // var audio = new Audio('/exercises/Spotify-clone/songs/' + tarck);
     currentSong.src = '/exercises/Spotify-clone/songs/' + tarck;
-    currentSong.play();
+    if (!pause) {
+        currentSong.play();
+        play.src = 'pause.svg';
+    }
+
+    document.querySelector(".songInfo").innerHTML = decodeURI(tarck);
+    document.querySelector(".songTime").innerHTML = "00:00/00:00";
 }
 
 // const playMusic = (tarck) => {
@@ -32,13 +48,14 @@ function playMusic(tarck) {
 // }
 
 async function main() {
-    
+
     let songs = await getSongs();
     // console.log(songs);
+    playMusic(songs[0], true)
 
     let songUl = document.querySelector('.songList').getElementsByTagName('ul')[0];
     //create li elements and add them to the ul
-    
+
     for (const song of songs) {
         // songUl.innerHTML = songUl.innerHTML + `<li>${song.replaceAll('%20', ' ')}</li>`;
         songUl.innerHTML = songUl.innerHTML + `
@@ -57,8 +74,8 @@ async function main() {
     // var audio = new Audio(songs[10]);
     // audio.play();
 
-    Array.from(document.querySelector('.songList').getElementsByTagName('li')).forEach(e=>{
-        e.addEventListener('click', element=>{
+    Array.from(document.querySelector('.songList').getElementsByTagName('li')).forEach(e => {
+        e.addEventListener('click', element => {
             play.src = 'pause.svg';
             console.log(e.querySelector('.info').firstElementChild.innerHTML)
             playMusic(e.querySelector('.info').firstElementChild.innerHTML.trim())
@@ -66,14 +83,27 @@ async function main() {
         })
     })
 
-    play.addEventListener('click', ()=> {
-        if (currentSong.paused){
+    play.addEventListener('click', () => {
+        if (currentSong.paused) {
             currentSong.play();
-            play.src='pause.svg';
+            play.src = 'pause.svg';
         } else {
             currentSong.pause();
             play.src = 'play.svg';
         }
+    })
+
+    // Listner for time duration
+    currentSong.addEventListener("timeupdate", () => {
+        document.querySelector(".songTime").innerHTML = `${sceToMins(currentSong.currentTime)} / ${sceToMins(currentSong.duration)}`
+        document.querySelector(".circle").style.left = ((currentSong.currentTime) / (currentSong.duration)) * 100 + "%";
+    })
+
+    // Listner for seekar circle movement
+    document.querySelector(".seekbar").addEventListener("click", e => {
+        let currentPercent = (e.offsetX / e.target.getBoundingClientRect().width) * 100
+        document.querySelector(".circle").style.left = currentPercent + "%";
+        currentSong.currentTime = (currentSong.duration * currentPercent) / 100;
     })
 
 
