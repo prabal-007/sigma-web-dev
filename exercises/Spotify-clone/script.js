@@ -1,5 +1,6 @@
 console.log('lets write Javascript now..');
 let currentSong = new Audio();
+let songs;
 
 function sceToMins(seconds) {
     const mins = Math.floor(seconds / 60);
@@ -49,7 +50,7 @@ function playMusic(tarck, pause = false) {
 
 async function main() {
 
-    let songs = await getSongs();
+    songs = await getSongs();
     // console.log(songs);
     playMusic(songs[0], true)
 
@@ -108,14 +109,35 @@ async function main() {
 
     // Listeners for hamburger icon
 
-    document.querySelector(".hamburger").addEventListener("click", e => {
+    document.querySelector(".hamburger").addEventListener("click", () => {
         document.querySelector(".left").style.left = "0%";
         document.querySelector(".left").style.transition = "all 0.5s ease";
     })
 
-    document.querySelector(".hamBurgerOn").addEventListener("click", e => {
+    document.querySelector(".hamBurgerOn").addEventListener("click", () => {
         document.querySelector(".left").style.left = "-110%";
         document.querySelector(".left").style.transition = "all 0.5s ease";
+    })
+
+    
+    // adding event listner for previous and next button
+
+    previous.addEventListener("click", () => {
+        console.log('hello')
+        let index = songs.indexOf(currentSong.src.split("/").slice(-1) [0]);
+        if (index <= 0){
+            index = songs.length - 1;
+        }
+        playMusic(songs[index - 1]);
+    })
+
+    next.addEventListener("click", () => {
+        console.log("hello2");
+        let index = songs.indexOf(currentSong.src.split("/").slice(-1) [0]);
+        if (songs.length <= index + 1){
+            index = -1;
+        }
+        playMusic(songs[index + 1]);
     })
 }
 
