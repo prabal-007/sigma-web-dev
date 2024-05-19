@@ -39,7 +39,7 @@ function playMusic(tarck, pause = false) {
     }
 
     document.querySelector(".songInfo").innerHTML = decodeURI(tarck);
-    document.querySelector(".songTime").innerHTML = "00:00/00:00";
+    document.querySelector(".songTime").innerHTML = "00:00 / 00:00"
 }
 
 // const playMusic = (tarck) => {
@@ -106,7 +106,17 @@ async function main() {
         currentSong.currentTime = (currentSong.duration * currentPercent) / 100;
     })
 
+    // Listeners for hamburger icon
 
+    document.querySelector(".hamburger").addEventListener("click", e => {
+        document.querySelector(".left").style.left = "0%";
+        document.querySelector(".left").style.transition = "all 0.5s ease";
+    })
+
+    document.querySelector(".hamBurgerOn").addEventListener("click", e => {
+        document.querySelector(".left").style.left = "-110%";
+        document.querySelector(".left").style.transition = "all 0.5s ease";
+    })
 }
 
 main();
