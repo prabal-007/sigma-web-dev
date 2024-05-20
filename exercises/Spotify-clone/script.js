@@ -1,6 +1,7 @@
 console.log('lets write Javascript now..');
 let currentSong = new Audio();
 let songs;
+let currVol = 0.4;
 
 function sceToMins(seconds) {
     const mins = Math.floor(seconds / 60);
@@ -142,7 +143,19 @@ async function main() {
 
     // adding evenListner for volume
     document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e) => {
+        mute.src = "volume.svg";
         currentSong.volume = parseInt(e.target.value) / 100;
+        currVol = currentSong.volume
+    })
+
+    document.querySelector(".volume").getElementsByTagName("img")[0].addEventListener("click", () => {
+        if (currentSong.volume == 0){
+            currentSong.volume = currVol;
+            mute.src = "volume.svg";
+        } else {
+            currentSong.volume = 0;
+            mute.src = "mute.svg";   
+        }
     })
 
 }
