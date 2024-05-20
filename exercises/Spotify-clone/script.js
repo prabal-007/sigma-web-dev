@@ -139,6 +139,12 @@ async function main() {
         }
         playMusic(songs[index + 1]);
     })
+
+    // adding evenListner for volume
+    document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e) => {
+        currentSong.volume = parseInt(e.target.value) / 100;
+    })
+
 }
 
 main();

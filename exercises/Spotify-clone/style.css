@@ -282,6 +282,7 @@ body {
 .infoBar {
     display: flex;
     justify-content: space-between;
+    /* justify-content: space-around; */
     margin: 8px 10px;
     color: white;
     width: 100%;
@@ -307,6 +308,29 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.volTime {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 32px;
+}
+
+/* .volume:hover::after {
+    content: "papa";
+} */
+
+.volume{
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.volume input{
+    width: 75px;
+    cursor: pointer;
 }
 
 @media (max-width: 1400px) {
@@ -368,6 +392,10 @@ body {
     .cardContainer{
         width: 96vw;
     }
+
+    .songInfo{
+        height: 15px;
+    }
 }
 
 @media (max-width: 500px) {
@@ -391,11 +419,12 @@ body {
     }
 
     .songInfo{
-        width: 225px;
+        width: 300px;
+        height: 0px;
     }
     
     .songTime{
-        width: 145px;
+        width: 126px;
     }
 }
 
