@@ -333,7 +333,7 @@ body {
     cursor: pointer;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1300px) {
     .left{
         position: absolute;
         left: -110%;
@@ -382,7 +382,8 @@ body {
 
     .card{
         /* width: 332px; */
-        width: 90vw;
+        /* width: 90vw; */
+        width: 37vw;
     }
 
     /* .spotifyPlaylist{
@@ -391,6 +392,7 @@ body {
 
     .cardContainer{
         width: 96vw;
+        justify-content: center;
     }
 
     .songInfo{
@@ -411,9 +413,14 @@ body {
     /* .hamBurgerOn{
         display: none;
     } */
+
+    .card{
+        /* width: 332px; */
+        width: 80vw;
+    }
 }
 
-@media (min-width: 1401px) {
+@media (min-width: 1301px) {
     .hamBurgerOn{
         display: none;
     }
