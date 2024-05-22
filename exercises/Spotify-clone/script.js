@@ -18,12 +18,9 @@ async function getSongs(folder) {
     let a = await fetch(`http://127.0.0.1:3000/exercises/Spotify-clone/songs/${folder}/`);
     currFolder = folder;
     let response = await a.text();
-    // console.log(response);
     let div = document.createElement('div');
     div.innerHTML = response;
     let as = div.getElementsByTagName('a');
-    // console.log('here');
-    // console.log(as);
     songs = [];
     for (let i = 0; i < as.length; i++) {
         const element = as[i];
@@ -37,7 +34,6 @@ async function getSongs(folder) {
     songUl.innerHTML = ""
 
     for (const song of songs) {
-        // songUl.innerHTML = songUl.innerHTML + `<li>${song.replaceAll('%20', ' ')}</li>`;
         songUl.innerHTML = songUl.innerHTML + `
         <li>
                             <img src="music.svg" alt="Music Icon">
@@ -51,15 +47,10 @@ async function getSongs(folder) {
                             </div> </li>`;
     }
 
-    // var audio = new Audio(songs[10]);
-    // audio.play();
-
     Array.from(document.querySelector('.songList').getElementsByTagName('li')).forEach(e => {
         e.addEventListener('click', element => {
             play.src = 'pause.svg';
-            console.log(e.querySelector('.info').firstElementChild.innerHTML)
             playMusic(e.querySelector('.info').firstElementChild.innerHTML.trim())
-            // e.querySelector('.playnow').getElementsByTagName('img')[0].src = 'pause.svg';
         })
     })
 
@@ -67,7 +58,6 @@ async function getSongs(folder) {
 }
 
 function playMusic(tarck, pause = false) {
-    // var audio = new Audio('/exercises/Spotify-clone/songs/' + tarck);
     currentSong.src = `/exercises/Spotify-clone/songs/${currFolder}/` + tarck;
     if (!pause) {
         currentSong.play();
@@ -81,7 +71,6 @@ function playMusic(tarck, pause = false) {
 async function displayAlbums(){
     let a = await fetch(`http://127.0.0.1:3000/exercises/Spotify-clone/songs/`);
     let response = await a.text();
-    // console.log(response);
     let div = document.createElement('div');
     div.innerHTML = response;
     let anchors = div.getElementsByTagName('a');
@@ -124,7 +113,6 @@ async function displayAlbums(){
 }
 async function main() {
     await getSongs("cs");
-    // console.log(songs);
     playMusic(songs[0], true)
 
     // Display Albums
