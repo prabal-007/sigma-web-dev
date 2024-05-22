@@ -2,6 +2,7 @@ console.log('lets write Javascript now..');
 let currentSong = new Audio();
 let songs;
 let currVol = 0.4;
+let currFolder;
 
 function sceToMins(seconds) {
     const mins = Math.floor(seconds / 60);
@@ -13,8 +14,9 @@ function sceToMins(seconds) {
 
 }
 
-async function getSongs() {
-    let a = await fetch('http://127.0.0.1:3000/exercises/Spotify-clone/songs/');
+async function getSongs(folder) {
+    let a = await fetch(`http://127.0.0.1:3000/exercises/Spotify-clone/songs/${folder}/`);
+    currFolder = folder;
     let response = await a.text();
     // console.log(response);
     let div = document.createElement('div');
@@ -22,41 +24,17 @@ async function getSongs() {
     let as = div.getElementsByTagName('a');
     // console.log('here');
     // console.log(as);
-    let songs = [];
+    songs = [];
     for (let i = 0; i < as.length; i++) {
         const element = as[i];
         if (element.href.endsWith('.mp3')) {
-            songs.push(element.href.split('/songs/')[1]);
+            songs.push(element.href.split(`/songs/${folder}/`)[1]);
         }
     }
-    return songs;
-}
-
-function playMusic(tarck, pause = false) {
-    // var audio = new Audio('/exercises/Spotify-clone/songs/' + tarck);
-    currentSong.src = '/exercises/Spotify-clone/songs/' + tarck;
-    if (!pause) {
-        currentSong.play();
-        play.src = 'pause.svg';
-    }
-
-    document.querySelector(".songInfo").innerHTML = decodeURI(tarck);
-    document.querySelector(".songTime").innerHTML = "00:00 / 00:00"
-}
-
-// const playMusic = (tarck) => {
-//     let audio = new Audio("/exercises/Spotify-clone/songs/" + tarck);
-//     audio.play();
-// }
-
-async function main() {
-
-    songs = await getSongs();
-    // console.log(songs);
-    playMusic(songs[0], true)
 
     let songUl = document.querySelector('.songList').getElementsByTagName('ul')[0];
     //create li elements and add them to the ul
+    songUl.innerHTML = ""
 
     for (const song of songs) {
         // songUl.innerHTML = songUl.innerHTML + `<li>${song.replaceAll('%20', ' ')}</li>`;
@@ -84,6 +62,43 @@ async function main() {
             // e.querySelector('.playnow').getElementsByTagName('img')[0].src = 'pause.svg';
         })
     })
+
+    // return songs;
+}
+
+function playMusic(tarck, pause = false) {
+    // var audio = new Audio('/exercises/Spotify-clone/songs/' + tarck);
+    currentSong.src = `/exercises/Spotify-clone/songs/${currFolder}/` + tarck;
+    if (!pause) {
+        currentSong.play();
+        play.src = 'pause.svg';
+    }
+
+    document.querySelector(".songInfo").innerHTML = decodeURI(tarck);
+    document.querySelector(".songTime").innerHTML = "00:00 / 00:00"
+}
+
+async function displayAlbums(){
+    let a = await fetch(`http://127.0.0.1:3000/exercises/Spotify-clone/songs/`);
+    let response = await a.text();
+    // console.log(response);
+    let div = document.createElement('div');
+    div.innerHTML = response;
+    let anchors = div.getElementsByTagName('a');
+
+    Array.from(anchors).forEach(e => {
+        if (e.href.includes("/songs")) {
+            console.log(e.href.split('/').slice(-2)[0])
+        }
+    })
+}
+async function main() {
+    await getSongs("cs");
+    // console.log(songs);
+    playMusic(songs[0], true)
+
+    // Display Albums
+    displayAlbums()
 
     play.addEventListener('click', () => {
         if (currentSong.paused) {
@@ -156,6 +171,14 @@ async function main() {
             currentSong.volume = 0;
             mute.src = "mute.svg";   
         }
+    })
+
+    // adding albums
+    Array.from(document.getElementsByClassName("card")).forEach(e => {
+        e.addEventListener("click", async item => {
+            console.log(item.currentTarget, item.currentTarget.dataset)
+            songs = await getSongs(`${item.currentTarget.dataset.folder}`);
+        })
     })
 
 }
