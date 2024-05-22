@@ -86,11 +86,41 @@ async function displayAlbums(){
     div.innerHTML = response;
     let anchors = div.getElementsByTagName('a');
 
-    Array.from(anchors).forEach(e => {
+    let array = Array.from(anchors)
+    for(let index = 0; index < array.length; index++) {
+        const e = array[index]
         if (e.href.includes("/songs")) {
-            console.log(e.href.split('/').slice(-2)[0])
+            let folder = e.href.split('/').slice(-2)[0]
+
+            // Get metaData for each album
+            let a = await fetch(`http://127.0.0.1:3000/exercises/Spotify-clone/songs/${folder}/info.json`)
+            let response = await a.json();
+            console.log(response)
+            
+            document.querySelector(".cardContainer").innerHTML += `<div data-folder="${folder}"  class="card">
+            <div class="play op">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 4 26 24" width="24" height="24"
+                    color="black" style="width: 70%; height: 70%;">
+                    <path
+                        d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z"
+                        stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                </svg>
+            </div>
+            <img src="/exercises/Spotify-clone/songs/${folder}/cover.png" alt="Animal">
+            <h4>${response.title}</h4>
+            <p>${response.description}</p>
+        </div>`
         }
+    }
+
+    // adding albums
+    Array.from(document.getElementsByClassName("card")).forEach(e => {
+        e.addEventListener("click", async item => {
+            console.log(item.currentTarget, item.currentTarget.dataset)
+            songs = await getSongs(`${item.currentTarget.dataset.folder}`);
+        })
     })
+
 }
 async function main() {
     await getSongs("cs");
@@ -171,14 +201,6 @@ async function main() {
             currentSong.volume = 0;
             mute.src = "mute.svg";   
         }
-    })
-
-    // adding albums
-    Array.from(document.getElementsByClassName("card")).forEach(e => {
-        e.addEventListener("click", async item => {
-            console.log(item.currentTarget, item.currentTarget.dataset)
-            songs = await getSongs(`${item.currentTarget.dataset.folder}`);
-        })
     })
 
 }
