@@ -1,4 +1,4 @@
-console.log('lets write Javascript now..');
+console.log('Javascript at work here..');
 let currentSong = new Audio();
 let songs;
 let currVol = 0.4;
@@ -15,7 +15,7 @@ function sceToMins(seconds) {
 }
 
 async function getSongs(folder) {
-    let a = await fetch(`http://127.0.0.1:3000/exercises/Spotify-clone/songs/${folder}/`);
+    let a = await fetch(`songs/${folder}/`);
     currFolder = folder;
     let response = await a.text();
     let div = document.createElement('div');
@@ -57,7 +57,7 @@ async function getSongs(folder) {
 }
 
 function playMusic(tarck, pause = false) {
-    currentSong.src = `/exercises/Spotify-clone/songs/${currFolder}/` + tarck;
+    currentSong.src = `songs/${currFolder}/` + tarck;
     if (!pause) {
         currentSong.play();
         play.src = 'img/pause.svg';
@@ -67,7 +67,7 @@ function playMusic(tarck, pause = false) {
 }
 
 async function displayAlbums(){
-    let a = await fetch(`http://127.0.0.1:3000/exercises/Spotify-clone/songs/`);
+    let a = await fetch(`songs/`);
     let response = await a.text();
     let div = document.createElement('div');
     div.innerHTML = response;
@@ -76,13 +76,12 @@ async function displayAlbums(){
     let array = Array.from(anchors)
     for(let index = 0; index < array.length; index++) {
         const e = array[index]
-        if (e.href.includes("/songs")) {
+        if (e.href.includes("/songs") && !e.href.includes(".htaccess")) {
             let folder = e.href.split('/').slice(-2)[0]
 
             // Get metaData for each album
-            let a = await fetch(`http://127.0.0.1:3000/exercises/Spotify-clone/songs/${folder}/info.json`)
+            let a = await fetch(`songs/${folder}/info.json`)
             let response = await a.json();
-            console.log(response)
             
             document.querySelector(".cardContainer").innerHTML += `<div data-folder="${folder}"  class="card">
             <div class="play op">
@@ -93,7 +92,7 @@ async function displayAlbums(){
                         stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
                 </svg>
             </div>
-            <img src="/exercises/Spotify-clone/songs/${folder}/cover.png" alt="Animal">
+            <img src="songs/${folder}/cover.png" alt="Animal">
             <h4>${response.title}</h4>
             <p>${response.description}</p>
         </div>`
@@ -103,7 +102,6 @@ async function displayAlbums(){
     // Loading playlist when card is clicked    
     Array.from(document.getElementsByClassName("card")).forEach(e => {
         e.addEventListener("click", async item => {
-            console.log(item.currentTarget, item.currentTarget.dataset)
             songs = await getSongs(`${item.currentTarget.dataset.folder}`);
 
             // to play first song automatically when a album is selected
@@ -112,7 +110,7 @@ async function displayAlbums(){
     })
 }
 async function main() {
-    await getSongs("cs");
+    await getSongs("Aavesham");
     playMusic(songs[0], true)
 
     // Display Albums
@@ -155,7 +153,6 @@ async function main() {
     
     // adding event listner for previous and next button
     previous.addEventListener("click", () => {
-        console.log('hello')
         let index = songs.indexOf(currentSong.src.split("/").slice(-1) [0]);
         if (index <= 0){
             index = songs.length - 1;
@@ -164,7 +161,6 @@ async function main() {
     })
 
     next.addEventListener("click", () => {
-        console.log("hello2");
         let index = songs.indexOf(currentSong.src.split("/").slice(-1) [0]);
         if (songs.length <= index + 1){
             index = -1;
