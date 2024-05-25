@@ -53,7 +53,6 @@ async function getSongs(folder) {
             playMusic(e.querySelector('.info').firstElementChild.innerHTML.trim())
         })
     })
-
     return songs;
 }
 
@@ -63,7 +62,6 @@ function playMusic(tarck, pause = false) {
         currentSong.play();
         play.src = 'img/pause.svg';
     }
-
     document.querySelector(".songInfo").innerHTML = decodeURI(tarck);
     document.querySelector(".songTime").innerHTML = "00:00 / 00:00"
 }
@@ -107,11 +105,11 @@ async function displayAlbums(){
         e.addEventListener("click", async item => {
             console.log(item.currentTarget, item.currentTarget.dataset)
             songs = await getSongs(`${item.currentTarget.dataset.folder}`);
+
             // to play first song automatically when a album is selected
             // playMusic(songs[0]);
         })
     })
-
 }
 async function main() {
     await getSongs("cs");
@@ -144,7 +142,6 @@ async function main() {
     })
 
     // Listeners for hamburger icon
-
     document.querySelector(".hamburger").addEventListener("click", () => {
         document.querySelector(".left").style.left = "0%";
         document.querySelector(".left").style.transition = "all 0.5s ease";
@@ -157,7 +154,6 @@ async function main() {
 
     
     // adding event listner for previous and next button
-
     previous.addEventListener("click", () => {
         console.log('hello')
         let index = songs.indexOf(currentSong.src.split("/").slice(-1) [0]);
@@ -192,7 +188,6 @@ async function main() {
             mute.src = "img/mute.svg";   
         }
     })
-
 }
 
 main();
