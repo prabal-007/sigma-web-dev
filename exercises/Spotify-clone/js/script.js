@@ -50,7 +50,10 @@ async function getSongs(folder) {
     Array.from(document.querySelector('.songList').getElementsByTagName('li')).forEach(e => {
         e.addEventListener('click', element => {
             play.src = 'img/pause.svg';
-            playMusic(e.querySelector('.info').firstElementChild.innerHTML.trim())
+            playtrack = e.querySelector('.info').firstElementChild.innerHTML.trim()
+            // playMusic(playtrack, playtrack.split(".")[0])
+            playMusic(playtrack)
+            // console.log(playtrack.split(".")[0])
         })
     })
     return songs;
@@ -62,7 +65,9 @@ function playMusic(tarck, pause = false) {
         currentSong.play();
         play.src = 'img/pause.svg';
     }
-    document.querySelector(".songInfo").innerHTML = decodeURI(tarck);
+    // filter out .mp3 from display track name
+    trackname = decodeURI(tarck).split(".")[0]
+    document.querySelector(".songInfo").innerHTML = decodeURI(trackname);
     document.querySelector(".songTime").innerHTML = "00:00 / 00:00"
 }
 
