@@ -11,7 +11,6 @@ function sceToMins(seconds) {
     const formatedSecs = String(secs).padStart(2, '0');
 
     return `${formatedMins}:${formatedSecs}`;
-
 }
 
 async function getSongs(folder) {
@@ -32,7 +31,6 @@ async function getSongs(folder) {
     let songUl = document.querySelector('.songList').getElementsByTagName('ul')[0];
     //create li elements and add them to the ul
     songUl.innerHTML = ""
-
     for (const song of songs) {
         songUl.innerHTML = songUl.innerHTML + `
         <li>
@@ -112,7 +110,6 @@ async function displayAlbums(){
             if(item.target.classList.contains('op')) {
                 playMusic(songs[0]);
             }
-
             // to play first song automatically when a album is selected
             // playMusic(songs[0]);
         })
