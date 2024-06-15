@@ -11,7 +11,7 @@ const files = await fs.readdir(dir)
 files.forEach(file => {
     let folder = path.extname(file).split('.')[1]
     if (folder !== 'js' && folder !== 'json' && folder !== undefined) {
-        if (!fsn.existsSync(folder)){
+        if (!fsn.existsSync(folder)){            // existsSync is only availale in fs
             console.log(folder)
             fs.mkdir(folder)
         }
