@@ -15,9 +15,11 @@ files.forEach(file => {
             console.log(folder)
             fs.mkdir(folder)
         }
-        fsn.rename(file, `${folder}\\${file}`, (err) => {
-            if (err) throw err;
-            console.log(`File renamed to ${folder}\\${file}`)
-        })
+        fs.rename(file, `${folder}\\${file}`)                  // using fs/promises  (fs)
+
+        // fsn.rename(file, `${folder}\\${file}`, (err) => {           // syntex for using fs module only (fsn)
+        //     if (err) throw err;
+        //     console.log(`File renamed to ${folder}\\${file}`)
+        // })
     }
 });
