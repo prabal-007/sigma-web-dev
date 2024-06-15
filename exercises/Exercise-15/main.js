@@ -1,22 +1,23 @@
-// Exercise 15 - Clear the Clutter
+import fs from "fs/promises"
+import fsn from "fs"
+import path from "path"
+import { fileURLToPath } from "url";
 
-const fs = require('fs')
-const path = require('path')
-const dir = __dirname
+const __filename = fileURLToPath(import.meta.url)
+const dir = path.dirname(__filename)
 
-const files = fs.readdirSync(dir)
-
+const files = await fs.readdir(dir)
 
 files.forEach(file => {
-    // console.log(path.extname(file))
-    if(path.extname(file) !== '.js' && path.extname(file) !== 'undefined'){
-        console.log('here')
+    let folder = path.extname(file).split('.')[1]
+    if (folder !== 'js' && folder !== 'json' && folder !== undefined) {
+        if (!fsn.existsSync(folder)){
+            console.log(folder)
+            fs.mkdir(folder)
+        }
+        fsn.rename(file, `${folder}\\${file}`, (err) => {
+            if (err) throw err;
+            console.log(`File renamed to ${folder}\\${file}`)
+        })
     }
-    if(path.extname(file) !== '.js' && path.extname(file) !== 'undefined'){
-        // console.log(path.extname(file))
-        let x = path.extname(file).split(".")[1]
-        console.log(x)
-        fs.mkdirSync(x)
-    }
-
 });
