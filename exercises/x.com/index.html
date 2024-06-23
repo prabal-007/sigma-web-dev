@@ -12,8 +12,8 @@
 </head>
 
 <body class="bg-black text-white w-[92%]">
-    <div class="flex container mx-28">
-        <div class="first w-[22%] p-3">
+    <div class="flex md:container">
+        <div class="first w-[50%] md:mx-28 p-3 m-0">
             <div class="logo">
                 <svg viewBox="0 0 24 24" aria-hidden="true"
                     class="w-8 fill-white r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-lrsllp r-1nao33i r-16y2uox r-8kz0gk">
@@ -24,7 +24,7 @@
                     </g>
                 </svg>
             </div>
-            <div class="sidebar">
+            <div class="sidebar sticky">
                 <ul class="flex flex-col text-xl space-y-2 pt-4 gap-1">
                     <li
                         class="flex justify-start items-center w-fit gap-3 px-5 py-2 cursor-pointer hover:bg-[#121414] rounded-full">
@@ -76,12 +76,13 @@
                     </li>
                     <li
                         class="flex justify-start items-center w-fit gap-3 px-5 py-2 cursor-pointer hover:bg-[#121414] rounded-3xl">
-                        <span class="material-symbols-outlined text-[32px]">more_horiz</span><span class="hidden md:block">More</span>
+                        <span class="material-symbols-outlined text-[32px]">more_horiz</span><span
+                            class="hidden md:block">More</span>
                     </li>
                     <button type="submit"
                         class="bg-sky-400 w-52 text-white text-xl font-bold px-5 py-2 rounded-full hidden md:block">Post</button>
                 </ul>
-                <div class="profile-box mt-14 flex justify-between align-middle">
+                <div class="profile-box mt-14 justify-between align-middle hidden md:flex">
                     <div class="profile flex gap-3">
                         <img src="./images/me.png" alt="Me" class="rounded-full">
                         <div class="uname">
@@ -100,7 +101,7 @@
 
 
         <!-- <div class="Second w-[42%] border-[1px] border-x-white border-y-black"> -->
-        <div class="Second w-[42%] border border-[#4e4e4e]">
+        <div class="Second w-full border border-[#4e4e4e]">
             <div class="top h-14 border border-gray-700 flex justify-evenly items-center text-gray-600 font-bold">
                 <div class="forYOu text-white">
                     For you
@@ -129,7 +130,7 @@
                             class="material-symbols-outlined text-xl">
                             public
                         </span>Everyone can reply</h4>
-                    <div class="bg-gray-700 h-[1px] w-[482px]"></div>
+                    <div class="bg-gray-700 h-[1px] w-60 md:w-[482px]"></div>
                     <div class="media flex justify-between items-center w-[100%] mt-[-6px]">
                         <div class="icns flex gap-2">
                             <span class="material-symbols-outlined cursor-pointer">
@@ -153,7 +154,7 @@
                         </div>
                         <div class="postBtn cursor-pointer">
                             <button type="submit"
-                                class="bg-sky-400 text-white text-sm font-bold px-5 py-2 rounded-full w-fit">Post</button>
+                                class="bg-sky-400 text-white text-sm font-bold px-5 py-2 rounded-full">Post</button>
                         </div>
                     </div>
                 </div>
@@ -161,7 +162,85 @@
             <div class="more-posts cursor-pointer border border-[#4e4e4e] flex justify-center text-sky-500 py-3">
                 Show 108 posts
             </div>
-            <div class="posts">
+            <div class="posts flex flex-col">
+                <div class="post flex p-2 gap-3 w-full border border-[#4e4e4e]">
+                    <img src="https://pbs.twimg.com/profile_images/1509808420030844929/ifEhyqHM_bigger.jpg" alt=""
+                        class="w-10 h-10 rounded-full">
+                    <div class="content w-full">
+                        <span class="hover:underline cursor-pointer">World of Engineering</span> <span
+                            class="text-gray-500 cursor-pointer">@engineers_feed · 6m</span>
+                        <div>“Life would be tragic if it weren’t funny.” ― Stephen Hawking</div>
+                        <div class="mt-4">
+                            <img src="https://pbs.twimg.com/media/GQw9Wv8a4AA80sh?format=jpg&name=small" alt=""
+                                class="rounded-xl w-3/4">
+                        </div>
+                        <div class="reaction flex justify-between align-middle my-2 text-gray-500 text-sm">
+                            <p class="flex justify-center align-middle gap-1 cursor-pointer"><span
+                                    class="material-symbols-outlined">
+                                    chat_bubble
+                                </span>2</p>
+                            <p class="flex justify-center align-middle gap-1 cursor-pointer"><span
+                                    class="material-symbols-outlined">
+                                    repeat
+                                </span>34</p>
+                            <p class="flex justify-center align-middle gap-1 cursor-pointer"><span
+                                    class="material-symbols-outlined">
+                                    favorite
+                                </span>250</p>
+                            <p class="flex justify-center align-middle gap-1 cursor-pointer"><span
+                                    class="material-symbols-outlined">
+                                    equalizer
+                                </span>25k</p>
+                            <div class="flex cursor-pointer">
+                                <span class="material-symbols-outlined">
+                                    bookmark
+                                </span>
+                                <span class="material-symbols-outlined">
+                                    upload
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="post flex p-2 gap-3 w-full border border-[#4e4e4e]">
+                    <img src="https://pbs.twimg.com/profile_images/1509808420030844929/ifEhyqHM_bigger.jpg" alt=""
+                        class="w-10 h-10 rounded-full">
+                    <div class="content w-full">
+                        <span class="hover:underline cursor-pointer">World of Engineering</span> <span
+                            class="text-gray-500 cursor-pointer">@engineers_feed · 6m</span>
+                        <div>“Life would be tragic if it weren’t funny.” ― Stephen Hawking</div>
+                        <div class="mt-4">
+                            <img src="https://pbs.twimg.com/media/GQw-GiYXUAA-uun?format=jpg&name=small" alt=""
+                                class="rounded-xl w-3/4">
+                        </div>
+                        <div class="reaction flex justify-between align-middle my-2 text-gray-500 text-sm">
+                            <p class="flex justify-center align-middle gap-1 cursor-pointer"><span
+                                    class="material-symbols-outlined">
+                                    chat_bubble
+                                </span>2</p>
+                            <p class="flex justify-center align-middle gap-1 cursor-pointer"><span
+                                    class="material-symbols-outlined">
+                                    repeat
+                                </span>34</p>
+                            <p class="flex justify-center align-middle gap-1 cursor-pointer"><span
+                                    class="material-symbols-outlined">
+                                    favorite
+                                </span>250</p>
+                            <p class="flex justify-center align-middle gap-1 cursor-pointer"><span
+                                    class="material-symbols-outlined">
+                                    equalizer
+                                </span>25k</p>
+                            <div class="flex cursor-pointer">
+                                <span class="material-symbols-outlined">
+                                    bookmark
+                                </span>
+                                <span class="material-symbols-outlined">
+                                    upload
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="post flex p-2 gap-3 w-full border border-[#4e4e4e]">
                     <img src="https://pbs.twimg.com/profile_images/1509808420030844929/ifEhyqHM_bigger.jpg" alt=""
                         class="w-10 h-10 rounded-full">
@@ -201,121 +280,165 @@
                         </div>
                     </div>
                 </div>
+                <div class="post flex p-2 gap-3 w-full border border-[#4e4e4e]">
+                    <img src="https://pbs.twimg.com/profile_images/1509808420030844929/ifEhyqHM_bigger.jpg" alt=""
+                        class="w-10 h-10 rounded-full">
+                    <div class="content w-full">
+                        <span class="hover:underline cursor-pointer">World of Engineering</span> <span
+                            class="text-gray-500 cursor-pointer">@engineers_feed · 6m</span>
+                        <div>“Life would be tragic if it weren’t funny.” ― Stephen Hawking</div>
+                        <div class="mt-4">
+                            <img src="./images/radhe.png" alt=""
+                                class="rounded-xl w-3/4">
+                        </div>
+                        <div class="reaction flex justify-between align-middle my-2 text-gray-500 text-sm">
+                            <p class="flex justify-center align-middle gap-1 cursor-pointer"><span
+                                    class="material-symbols-outlined">
+                                    chat_bubble
+                                </span>2</p>
+                            <p class="flex justify-center align-middle gap-1 cursor-pointer"><span
+                                    class="material-symbols-outlined">
+                                    repeat
+                                </span>34</p>
+                            <p class="flex justify-center align-middle gap-1 cursor-pointer"><span
+                                    class="material-symbols-outlined">
+                                    favorite
+                                </span>250</p>
+                            <p class="flex justify-center align-middle gap-1 cursor-pointer"><span
+                                    class="material-symbols-outlined">
+                                    equalizer
+                                </span>25k</p>
+                            <div class="flex cursor-pointer">
+                                <span class="material-symbols-outlined">
+                                    bookmark
+                                </span>
+                                <span class="material-symbols-outlined">
+                                    upload
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
 
 
-        <div class="third flex flex-col gap-3 w-[24%] p-1 ml-3">
-            <div class="search flex">
-                <span
-                    class="material-symbols-outlined text-[24px] flex justify-center items-center relative top-0 left-1 w-12 h-12 rounded-l-3xl m-0 mr-0 bg-[#121414]">
-                    search
-                </span>
-                <input type="search" name="" id="" placeholder="search"
-                    class="w-80 h-12 rounded-r-3xl m-0- ml-1 bg-[#121414]">
-            </div>
-            <div class="Subscribe flex flex-col p-3 w-[361px] border border-gray-500 rounded-2xl m-3 mb-0 space-y-3">
-                <h2 class="text-xl font-bold">Subscribe to Premium</h2>
-                <p>Subscribe to unlock new features and if eligible, receive a share of ads revenue.</p>
-                <button type="submit"
-                    class="bg-sky-400 text-white text-sm font-bold px-5 py-2 rounded-full w-fit">Subscribe</button>
-            </div>
-            <div class="whats-happening w-[362px] p-3 border border-gray-500 rounded-2xl m-3 space-y-4">
-                <h1 class="text-xl font-bold">What’s happening</h1>
-                <div class="trending flex hover:bg-[#121414] gap-2">
-                    <img src="./images/image.png" alt="image" class="w-20 h-20 rounded-lg">
-                    <div class="one-info">
-                        <h2 class="font-bold">Turkiye vs Portugal</h2>
-                        <p class="text-xs text-gray-500">UEFA European Championship·4 hours ago</p>
-                    </div>
+        <div class="third w-full hidden md:block">
+            <div class="flex flex-col gap-3 p-1 ml-3">
+                <div class="search flex">
+                    <span
+                        class="material-symbols-outlined text-[24px] flex justify-center items-center relative top-0 left-1 w-12 h-12 rounded-l-3xl m-0 mr-0 bg-[#121414]">
+                        search
+                    </span>
+                    <input type="search" name="" id="" placeholder="search"
+                        class="w-80 h-12 rounded-r-3xl m-0- ml-1 bg-[#121414]">
                 </div>
-                <div class="trending flex hover:bg-[#121414] justify-between items-center text-gray-500">
-                    <div class="one">
-                        <p class="text-xs ">Trending in India</p>
-                        <h2 class="font-bold text-white">Virat Kolhi</h2>
-                        <p class="text-xs">1.08M posts</p>
-                    </div>
-                    <div class="two">
-                        <span class="material-symbols-outlined">
-                            more_horiz
-                        </span>
-                    </div>
+                <div
+                    class="Subscribe flex flex-col p-3 w-[361px] border border-gray-500 rounded-2xl m-3 mb-0 space-y-3">
+                    <h2 class="text-xl font-bold">Subscribe to Premium</h2>
+                    <p>Subscribe to unlock new features and if eligible, receive a share of ads revenue.</p>
+                    <button type="submit"
+                        class="bg-sky-400 text-white text-sm font-bold px-5 py-2 rounded-full w-fit">Subscribe</button>
                 </div>
-                <div class="trending flex hover:bg-[#121414] justify-between items-center text-gray-500">
-                    <div class="one">
-                        <p class="text-xs ">Trending in India</p>
-                        <h2 class="font-bold text-white">Virat Kolhi</h2>
-                        <p class="text-xs">1.08M posts</p>
-                    </div>
-                    <div class="two">
-                        <span class="material-symbols-outlined">
-                            more_horiz
-                        </span>
-                    </div>
-                </div>
-                <div class="trending flex hover:bg-[#121414] justify-between items-center text-gray-500">
-                    <div class="one">
-                        <p class="text-xs ">Trending in India</p>
-                        <h2 class="font-bold text-white">Virat Kolhi</h2>
-                        <p class="text-xs">1.08M posts</p>
-                    </div>
-                    <div class="two">
-                        <span class="material-symbols-outlined">
-                            more_horiz
-                        </span>
-                    </div>
-                </div>
-                <div class="trending flex hover:bg-[#121414] justify-between items-center text-gray-500">
-                    <div class="one">
-                        <p class="text-xs ">Trending in India</p>
-                        <h2 class="font-bold text-white">Virat Kolhi</h2>
-                        <p class="text-xs">1.08M posts</p>
-                    </div>
-                    <div class="two">
-                        <span class="material-symbols-outlined">
-                            more_horiz
-                        </span>
-                    </div>
-                </div>
-                <a href="" class="text-sky-500 text-xs mt-4">Show More</a>
-
-            </div>
-            <div class="who_follow flex flex-col p-3 w-[361px] border border-gray-500 rounded-2xl m-3 mb-0 space-y-3">
-                <h2 class="text-xl font-bold">
-                    Who to follow</h2>
-                <div class="follow flex justify-between items-center hover:bg-[#121414] text-gray-500">
-                    <div class="dp flex gap-2">
-                        <img src="./images/image.png" class="w-12 h-12 rounded-lg" alt="DP">
-                        <div class="uName">
-                            <h2 class="font-bold text-white">Akshay Kumar</h2>
-                            <p class="text-xs">@AkshayKumar</p>
+                <div class="whats-happening w-[362px] p-3 border border-gray-500 rounded-2xl m-3 space-y-4">
+                    <h1 class="text-xl font-bold">What’s happening</h1>
+                    <div class="trending flex hover:bg-[#121414] gap-2">
+                        <img src="./images/image.png" alt="image" class="w-20 h-20 rounded-lg">
+                        <div class="one-info">
+                            <h2 class="font-bold">Turkiye vs Portugal</h2>
+                            <p class="text-xs text-gray-500">UEFA European Championship·4 hours ago</p>
                         </div>
                     </div>
-                    <button
-                        class="text-gray-950 bg-white w-[78px] h-[32px] rounded-full font-bold text-sm">Follow</button>
-                </div>
-                <div class="follow flex justify-between items-center hover:bg-[#121414] text-gray-500">
-                    <div class="dp flex gap-2">
-                        <img src="./images/image.png" class="w-12 h-12 rounded-lg" alt="DP">
-                        <div class="uName">
-                            <h2 class="font-bold text-white">Elon Musk</h2>
-                            <p class="text-xs">@elonmusk</p>
-                        </div>
-                    </div>
-                    <button
-                        class="text-gray-950 bg-white w-[78px] h-[32px] rounded-full font-bold text-sm">Follow</button>
-                </div>
-                <div class="follow flex justify-between items-center hover:bg-[#121414] text-gray-500">
-                    <div class="dp flex gap-2">
-                        <img src="./images/image.png" class="w-12 h-12 rounded-lg" alt="DP">
-                        <div class="uName">
+                    <div class="trending flex hover:bg-[#121414] justify-between items-center text-gray-500">
+                        <div class="one">
+                            <p class="text-xs ">Trending in India</p>
                             <h2 class="font-bold text-white">Virat Kolhi</h2>
-                            <p class="text-xs">@Virat</p>
+                            <p class="text-xs">1.08M posts</p>
+                        </div>
+                        <div class="two">
+                            <span class="material-symbols-outlined">
+                                more_horiz
+                            </span>
                         </div>
                     </div>
-                    <button
-                        class="text-gray-950 bg-white w-[78px] h-[32px] rounded-full font-bold text-sm">Follow</button>
+                    <div class="trending flex hover:bg-[#121414] justify-between items-center text-gray-500">
+                        <div class="one">
+                            <p class="text-xs ">Trending in India</p>
+                            <h2 class="font-bold text-white">Virat Kolhi</h2>
+                            <p class="text-xs">1.08M posts</p>
+                        </div>
+                        <div class="two">
+                            <span class="material-symbols-outlined">
+                                more_horiz
+                            </span>
+                        </div>
+                    </div>
+                    <div class="trending flex hover:bg-[#121414] justify-between items-center text-gray-500">
+                        <div class="one">
+                            <p class="text-xs ">Trending in India</p>
+                            <h2 class="font-bold text-white">Virat Kolhi</h2>
+                            <p class="text-xs">1.08M posts</p>
+                        </div>
+                        <div class="two">
+                            <span class="material-symbols-outlined">
+                                more_horiz
+                            </span>
+                        </div>
+                    </div>
+                    <div class="trending flex hover:bg-[#121414] justify-between items-center text-gray-500">
+                        <div class="one">
+                            <p class="text-xs ">Trending in India</p>
+                            <h2 class="font-bold text-white">Virat Kolhi</h2>
+                            <p class="text-xs">1.08M posts</p>
+                        </div>
+                        <div class="two">
+                            <span class="material-symbols-outlined">
+                                more_horiz
+                            </span>
+                        </div>
+                    </div>
+                    <a href="" class="text-sky-500 text-xs mt-4">Show More</a>
+
+                </div>
+                <div
+                    class="who_follow flex flex-col p-3 w-[361px] border border-gray-500 rounded-2xl m-3 mb-0 space-y-3">
+                    <h2 class="text-xl font-bold">
+                        Who to follow</h2>
+                    <div class="follow flex justify-between items-center hover:bg-[#121414] text-gray-500">
+                        <div class="dp flex gap-2">
+                            <img src="./images/image.png" class="w-12 h-12 rounded-lg" alt="DP">
+                            <div class="uName">
+                                <h2 class="font-bold text-white">Akshay Kumar</h2>
+                                <p class="text-xs">@AkshayKumar</p>
+                            </div>
+                        </div>
+                        <button
+                            class="text-gray-950 bg-white w-[78px] h-[32px] rounded-full font-bold text-sm">Follow</button>
+                    </div>
+                    <div class="follow flex justify-between items-center hover:bg-[#121414] text-gray-500">
+                        <div class="dp flex gap-2">
+                            <img src="./images/image.png" class="w-12 h-12 rounded-lg" alt="DP">
+                            <div class="uName">
+                                <h2 class="font-bold text-white">Elon Musk</h2>
+                                <p class="text-xs">@elonmusk</p>
+                            </div>
+                        </div>
+                        <button
+                            class="text-gray-950 bg-white w-[78px] h-[32px] rounded-full font-bold text-sm">Follow</button>
+                    </div>
+                    <div class="follow flex justify-between items-center hover:bg-[#121414] text-gray-500">
+                        <div class="dp flex gap-2">
+                            <img src="./images/image.png" class="w-12 h-12 rounded-lg" alt="DP">
+                            <div class="uName">
+                                <h2 class="font-bold text-white">Virat Kolhi</h2>
+                                <p class="text-xs">@Virat</p>
+                            </div>
+                        </div>
+                        <button
+                            class="text-gray-950 bg-white w-[78px] h-[32px] rounded-full font-bold text-sm">Follow</button>
+                    </div>
                 </div>
             </div>
         </div>
