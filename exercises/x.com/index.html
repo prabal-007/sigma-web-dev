@@ -11,20 +11,20 @@
     <title>Home/X</title>
 </head>
 
-<body class="bg-black text-white w-[92%]">
+<body class="bg-black text-white w-[88%]">
     <div class="flex md:container">
-        <div class="first w-[50%] md:mx-28 p-3 m-0">
-            <div class="logo">
-                <svg viewBox="0 0 24 24" aria-hidden="true"
-                    class="w-8 fill-white r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-lrsllp r-1nao33i r-16y2uox r-8kz0gk">
-                    <g>
-                        <path
-                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
-                        </path>
-                    </g>
-                </svg>
-            </div>
-            <div class="sidebar sticky">
+        <div class="first w-[40%] md:ml-28 p-3 m-0 md:mr-4">
+            <div class="sidebar sticky top-0">
+                <div class="logo md:ml-[10px]">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"
+                        class="w-8 fill-white r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-lrsllp r-1nao33i r-16y2uox r-8kz0gk">
+                        <g>
+                            <path
+                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+                            </path>
+                        </g>
+                    </svg>
+                </div>
                 <ul class="flex flex-col text-xl space-y-2 pt-4 gap-1">
                     <li
                         class="flex justify-start items-center w-fit gap-3 px-5 py-2 cursor-pointer hover:bg-[#121414] rounded-full">
@@ -99,10 +99,8 @@
             </div>
         </div>
 
-
-        <!-- <div class="Second w-[42%] border-[1px] border-x-white border-y-black"> -->
-        <div class="Second w-full border border-[#4e4e4e]">
-            <div class="top h-14 border border-gray-700 flex justify-evenly items-center text-gray-600 font-bold">
+        <div class="Second border w-full border-[#4e4e4e]">
+            <div class="top h-14 bg-black border border-gray-700 flex justify-evenly items-center text-gray-600 font-bold sticky top-0">
                 <div class="forYOu text-white">
                     For you
                 </div>
@@ -113,10 +111,10 @@
                     More
                 </div>
             </div>
-            <div class="tab bg-sky-500 h-1 w-16 absolute left-[34%] top-[7%] rounded-full"></div>
+            <div class="tab bg-sky-500 h-1 w-16 absolute left-[34%] top-[7%] rounded-full hidden md:block"></div>
             <div class="forYou flex m-3">
                 <div class="first m-1 cursor-pointer">
-                    <img src="./images/me.png" alt="Me" class="w-12 h-12 rounded-full">
+                    <img src="./images/me.png" alt="Me" class="w-10 h-10 rounded-full">
                 </div>
                 <div class="second flex flex-col gap-4 text-sky-500">
                     <button
@@ -163,6 +161,41 @@
                 Show 108 posts
             </div>
             <div class="posts flex flex-col">
+                <div class="post flex p-2 gap-3 w-full border border-[#4e4e4e]">
+                    <img src="https://pbs.twimg.com/profile_images/1780044485541699584/p78MCn3B_bigger.jpg" alt=""
+                        class="w-10 h-10 rounded-full">
+                    <div class="content w-full">
+                        <span class="hover:underline cursor-pointer">Elon Musk</span> <span
+                            class="text-gray-500 cursor-pointer">@elonmusk · 38m</span>
+                        <div>The trend is very strong that any AI company’s name that can be inverted will be inverted</div>
+                        <div class="reaction flex justify-between align-middle my-2 text-gray-500 text-sm">
+                            <p class="flex justify-center align-middle gap-1 cursor-pointer"><span
+                                    class="material-symbols-outlined">
+                                    chat_bubble
+                                </span>2k</p>
+                            <p class="flex justify-center align-middle gap-1 cursor-pointer"><span
+                                    class="material-symbols-outlined">
+                                    repeat
+                                </span>34k</p>
+                            <p class="flex justify-center align-middle gap-1 cursor-pointer"><span
+                                    class="material-symbols-outlined">
+                                    favorite
+                                </span>25m</p>
+                            <p class="flex justify-center align-middle gap-1 cursor-pointer"><span
+                                    class="material-symbols-outlined">
+                                    equalizer
+                                </span>25k</p>
+                            <div class="flex cursor-pointer">
+                                <span class="material-symbols-outlined">
+                                    bookmark
+                                </span>
+                                <span class="material-symbols-outlined">
+                                    upload
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="post flex p-2 gap-3 w-full border border-[#4e4e4e]">
                     <img src="https://pbs.twimg.com/profile_images/1509808420030844929/ifEhyqHM_bigger.jpg" alt=""
                         class="w-10 h-10 rounded-full">
@@ -325,9 +358,9 @@
 
 
 
-        <div class="third w-full hidden md:block">
+        <div class="third md:w-[25%] hidden md:block">
             <div class="flex flex-col gap-3 p-1 ml-3">
-                <div class="search flex">
+                <div class="search flex w-[150%]">
                     <span
                         class="material-symbols-outlined text-[24px] flex justify-center items-center relative top-0 left-1 w-12 h-12 rounded-l-3xl m-0 mr-0 bg-[#121414]">
                         search
