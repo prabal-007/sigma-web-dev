@@ -1,0 +1,12 @@
+.cardn{
+    border: 1px solid black;
+    width: 200px;
+    margin: 20px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+img{
+    margin-bottom: 20px;
+    width: 204px;
+}

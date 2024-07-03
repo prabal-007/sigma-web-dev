@@ -1,0 +1,9 @@
+.footer{
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    background-color: black;
+    color: wheat;
+    width: 100vw;
+}
