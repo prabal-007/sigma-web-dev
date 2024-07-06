@@ -1,0 +1,25 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.main {
+  background-color: aqua;
+  padding: 15px;
+  margin: 40px;
+}
+
+.f-main{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.f2 {
+  display: flex;
+  gap: 10px;
+}
