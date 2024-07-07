@@ -14,7 +14,7 @@ const Navbar = () => {
             <div>
                 <ul className='flex mx-4 gap-11'>
                     <li className='hover:font-bold cursor-pointer'><button onClick={handleAll}>Free memory</button></li>
-                    <li className='hover:font-bold cursor-pointer'><a href="http://"></a>Source Code</li>
+                    <li className='hover:font-bold cursor-pointer'><a href="https://github.com/prabal-007/sigma-web-dev/tree/main/exercises/TodoList-App">Source Code</a></li>
                 </ul>
             </div>
         </nav>
