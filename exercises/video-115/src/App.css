@@ -1,0 +1,17 @@
+nav {
+  display: flex;
+  background-color: black;
+  padding: 10px;
+}
+
+li {
+  list-style: none;
+  margin: 10px 20px;
+}
+
+a li {
+  color: aliceblue;
+}
+.red {
+  background-color: red;
+}
