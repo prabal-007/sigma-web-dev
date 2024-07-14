@@ -100,13 +100,17 @@ const NewTask = () => {
     const handleSort = (e) => {
         setsortBy(e.target.value)
         console.log(todos)
-
     }
 
     const getSorterOrder = () => {
         if (sortBy === '') return todos
-        const priorityOrder = { 'High': 1, 'Medium': 2, 'Low': 3 }
-        return [...todos].sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority])
+        else if (sortBy === 'priority') {
+            const priorityOrder = { 'High': 1, 'Medium': 2, 'Low': 3 }
+            return [...todos].sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority])
+        } else {
+            console.log('newe sort')
+            return [...todos].sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
+        }
     }
 
     const sortedtodos = getSorterOrder()
@@ -137,7 +141,7 @@ const NewTask = () => {
                             <div className='p-2 ml-10'>
                                 {/* <span>Due Date : </span> */}
                                 <DatePicker
-                                showIcon
+                                    showIcon
                                     selected={dueDate}
                                     onChange={(date) => setdueDate(date)}
                                     minDate={new Date()}
@@ -145,7 +149,7 @@ const NewTask = () => {
                                     showTimeSelect
                                     placeholderText='Select due date/time'
                                     isClearable
-                                    closeOnScroll = {true}
+                                    closeOnScroll={true}
                                     timeFormat='HH:MM'
                                     timeIntervals={60}
                                 />
@@ -163,6 +167,7 @@ const NewTask = () => {
                         <select onChange={handleSort} name="" id="">
                             <option value="">Sort By</option>
                             <option value="priority">Priority</option>
+                            <option value="dueDate">Due Date</option>
                         </select>
                     </div>
 
