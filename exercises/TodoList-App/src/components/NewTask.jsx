@@ -99,6 +99,8 @@ const NewTask = () => {
 
     const handleSort = (e) => {
         setsortBy(e.target.value)
+        console.log(todos)
+
     }
 
     const getSorterOrder = () => {
@@ -111,7 +113,7 @@ const NewTask = () => {
 
     useEffect(() => {
         // console.log(priority);
-    }, [priority, dueDate, sortBy]);
+    }, [priority, dueDate]);
 
 
     return (
@@ -133,11 +135,19 @@ const NewTask = () => {
                                 <button onClick={handlePriority} name='High' className='flex w-fit items-center text-xs border border-red-400 rounded-lg py-[2px] px-1'><FcHighPriority />High</button>
                             </div>
                             <div className='p-2 ml-10'>
-                                <span>Due Date : </span>
+                                {/* <span>Due Date : </span> */}
                                 <DatePicker
+                                showIcon
                                     selected={dueDate}
                                     onChange={(date) => setdueDate(date)}
                                     minDate={new Date()}
+                                    toggleCalendarOnIconClick
+                                    showTimeSelect
+                                    placeholderText='Select due date/time'
+                                    isClearable
+                                    closeOnScroll = {true}
+                                    timeFormat='HH:MM'
+                                    timeIntervals={60}
                                 />
                             </div>
                         </div>
