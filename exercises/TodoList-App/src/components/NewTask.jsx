@@ -8,8 +8,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Timer from './Timer';
 
-// import Dropdown from 'react-dropdown';
-// import 'react-dropdown/style.css';
 
 const NewTask = () => {
 
@@ -18,8 +16,7 @@ const NewTask = () => {
     const [showFinished, setShowFinished] = useState(true)
     const [priority, setPriority] = useState('Low')
     const [dueDate, setdueDate] = useState(null)
-    // const [sortBy, setsortBy] = useState(['priority', 'dueDate'])
-    // const [sortBy, setsortBy] = useState([priority, dueDate])
+    const [sortBy, setsortBy] = useState('')
 
     useEffect(() => {
         let todoString = localStorage.getItem('todos')
@@ -86,32 +83,35 @@ const NewTask = () => {
 
     const handlePriority = (e) => {
         let pname = e.target.name
-        if (pname == '2') {
+        if (pname == 'High') {
             setPriority('High')
             console.log(priority)
         }
-        else if (pname == '1') {
+        else if (pname == 'Medium') {
             setPriority('Medium')
             console.log(priority)
         }
         else {
-            setPriority('0')
+            setPriority('Low')
             console.log(priority)
         }
     }
 
-    // const handleSort = (key) => {
-    //     const sortedData = [...todos].sort((a, b) => {
-    //         if (a[key] < b[key]) return -1;
-    //         if (a[key] > b[key]) return 1;
-    //         return 0;
-    //       });
-    //   setTodos(sortedData)
-    // }
+    const handleSort = (e) => {
+        setsortBy(e.target.value)
+    }
+
+    const getSorterOrder = () => {
+        if (sortBy === '') return todos
+        const priorityOrder = { 'High': 1, 'Medium': 2, 'Low': 3 }
+        return [...todos].sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority])
+    }
+
+    const sortedtodos = getSorterOrder()
 
     useEffect(() => {
         // console.log(priority);
-    }, [priority, dueDate]);
+    }, [priority, dueDate, sortBy]);
 
 
     return (
@@ -150,19 +150,17 @@ const NewTask = () => {
                     <div className='flex justify-between w-2/3'>
                         <h2 className='font-bold text-lg'>Your Todos</h2>
                         <span><input type="checkbox" onChange={togglefinished} checked={showFinished} /> Show completed Tasks</span>
-                        {/* <Dropdown className='w-1'
-                            // sortBy={sortBy}
-                            // onChange={}
-                            // value = {'priority'} 
-                            placeholder="SortBy"
-                            /> */}
+                        <select onChange={handleSort} name="" id="">
+                            <option value="">Sort By</option>
+                            <option value="priority">Priority</option>
+                        </select>
                     </div>
 
                     {todos.length === 0 && <div>Your todo list is empty!</div>}
-                    
-                    {todos.map(item => {
+
+                    {sortedtodos.map(item => {
                         return (showFinished || !item.isComplted) && <div key={item.id} className="todos w-2/3">
-                            
+
                             <div className="todo flex justify-between border-2 border-gray-200 rounded-md bg-violet-100 p-2 m-2 max-h-16 overflow-hidden">
                                 <div className='flex gap-2'>
                                     <input className='border rounded-xl' type="checkbox" name={item.id} onChange={handleCheckBox} checked={item.isComplted} />
