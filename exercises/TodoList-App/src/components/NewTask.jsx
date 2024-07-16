@@ -17,6 +17,8 @@ const NewTask = () => {
     const [priority, setPriority] = useState('Low')
     const [dueDate, setdueDate] = useState(null)
     const [sortBy, setsortBy] = useState('')
+    const [tag, setTag] = useState('')
+    // const [overDue, setoverDue] = useState(false)
 
     useEffect(() => {
         let todoString = localStorage.getItem('todos')
@@ -36,8 +38,9 @@ const NewTask = () => {
 
     const handleAdd = () => {
         if (todo.length !== 0) {
-            setTodos([...todos, { id: uuidv4(), todo, isComplted: false, priority, dueDate }])
+            setTodos([...todos, { id: uuidv4(), todo, isComplted: false, priority, dueDate, tag }])
             setTodo('')
+            // console.log()
         } else {
             alert('Nothing to add')
         }
@@ -102,6 +105,10 @@ const NewTask = () => {
         console.log(todos)
     }
 
+    const handleTag = (e) => {
+        setTag(e.target.value)
+    }
+
     const getSorterOrder = () => {
         if (sortBy === '') return todos
         else if (sortBy === 'priority') {
@@ -113,12 +120,32 @@ const NewTask = () => {
         }
     }
 
+    const checkOverDuetask = () => {
+        setTodos((prevtask) => 
+            prevtask.map((task) => (
+                {...task, isOverDue: new Date(task.dueDate) < new Date()}
+            ))
+        )
+    }
+
+    useEffect(() => {
+      const interval = setInterval(checkOverDuetask, 60000)
+      console.log(`isOverDue ${checkOverDuetask}`)
+      return () => {
+        clearInterval(interval)
+      }
+    }, [])
+    
+
+    // const isOverDue = (dueDate) => {
+    //     return dueDate < new Date()
+    // }
+
     const sortedtodos = getSorterOrder()
 
     useEffect(() => {
         // console.log(priority);
     }, [priority, dueDate]);
-
 
     return (
         <div className="container mx-auto p-6">
@@ -151,8 +178,16 @@ const NewTask = () => {
                                     isClearable
                                     closeOnScroll={true}
                                     timeFormat='HH:MM'
-                                    timeIntervals={60}
+                                    timeIntervals={5}
                                 />
+                            </div>
+                            <div className='p-2'>
+                                <select onChange={handleTag} name="" id="">
+                                    <option value="">Add tag</option>
+                                    <option value="office" className='bg-red-200'>Office</option>
+                                    <option value="personal" className='bg-yellow-200'>Personal</option>
+                                    <option value="shopping" className='bg-green-300'>Shopping</option>
+                                </select>
                             </div>
                         </div>
 
@@ -175,18 +210,24 @@ const NewTask = () => {
 
                     {sortedtodos.map(item => {
                         return (showFinished || !item.isComplted) && <div key={item.id} className="todos w-2/3">
+                            
 
-                            <div className="todo flex justify-between border-2 border-gray-200 rounded-md bg-violet-100 p-2 m-2 max-h-16 overflow-hidden">
+
+                            <div className={`todo flex justify-between border-2 ${ item.isOverDue ? 'border-red-600 bg-red-200' : 'border-gray-200 bg-violet-100'}  rounded-md p-2 m-2 max-h-16 overflow-hidden`}>
                                 <div className='flex gap-2'>
                                     <input className='border rounded-xl' type="checkbox" name={item.id} onChange={handleCheckBox} checked={item.isComplted} />
                                     <h2 className={item.isComplted ? 'max-w-lg line-through' : ''}>{item.todo}</h2>
                                 </div>
 
                                 <div className='w-18 flex gap-1'>
+                                    
+                                    {item.tag && <span className='border border-gray-500 bg-gray-400 p-1 rounded-xl'>{item.tag}</span>}
+                                    {item.priority === 'Low' && <FcLowPriority /> || item.priority === 'High' && <FcHighPriority /> || item.priority === 'Medium' && <FcMediumPriority />}
+
+
                                     <button onClick={(e) => { handleEdit(e, item.id) }} className='border px-2 bg-violet-900 text-white font-xl rounded-md'><FaEdit />
                                     </button>
                                     <button onClick={(e) => { handleDel(e, item.id) }} className='border px-2 bg-violet-900 text-white font-xl rounded-md'><MdDelete /></button>
-                                    {item.priority === 'Low' && <FcLowPriority /> || item.priority === 'High' && <FcHighPriority /> || item.priority === 'Medium' && <FcMediumPriority />}
                                 </div>
 
                             </div>
