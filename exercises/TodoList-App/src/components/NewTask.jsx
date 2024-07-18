@@ -94,18 +94,6 @@ const NewTask = () => {
 
     const handlePriority = (e) => {
         let pname = e.target.name
-        // if (pname == 'High') {
-        //     setPriority('High')
-        //     console.log(priority)
-        // }
-        // else if (pname == 'Medium') {
-        //     setPriority('Medium')
-        //     console.log(priority)
-        // }
-        // else {
-        //     setPriority('Low')
-        //     console.log(priority)
-        // }
         setPriority(pname)
     }
 
@@ -171,7 +159,7 @@ const NewTask = () => {
                     <div className='w-full flex justify-center'>
 
                         <div className='w-[90%] hidden md:flex md:flex-row p-1'>
-                            <input type="text" className='w-[75%] m-1 p-2' onChange={handleChange} value={todo} />
+                            <input type="text" placeholder='New task' className='w-[75%] m-1 p-2' onChange={handleChange} value={todo} />
                             {/* <input type="textbox" className='md:w-[80%] h-28'/> */}
                             <button onClick={handleAdd} className={`bg-violet-500 font-bold text-white p-1 px-6 m-1 rounded-lg hover:text-gray-100 ${todo.length === 0 ? 'bg-violet-500' : 'bg-violet-800 hover:bg-violet-700'}`}>Add</button>
                         </div>
@@ -242,9 +230,7 @@ const NewTask = () => {
                     {sortedtodos.map(item => {
                         return (showFinished || !item.isComplted) && <div key={item.id} className="todos w-2/3">
 
-
-
-                            <div className={`todo flex justify-between border-2 ${item.isOverDue ? 'border-red-600 bg-red-200' : 'border-gray-200 bg-violet-100'}  rounded-md p-2 m-2 max-h-16 overflow-hidden`}>
+                            <div className={`todo flex justify-between border-2 ${item.isOverDue && !item.isComplted ? 'border-red-600 bg-red-200' : 'border-gray-200 bg-violet-100'}  rounded-md p-2 m-2 max-h-16 overflow-hidden`}>
                                 <div className='flex gap-2'>
                                     <input className='border rounded-xl' type="checkbox" name={item.id} onChange={handleCheckBox} checked={item.isComplted} />
                                     <h2 className={item.isComplted ? 'max-w-lg line-through' : ''}>{item.todo}</h2>
