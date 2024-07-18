@@ -19,7 +19,8 @@ const NewTask = () => {
     const [sortBy, setsortBy] = useState('')
     const [tag, setTag] = useState('other')
     const [description, setDescription] = useState('')
-    // const [overDue, setoverDue] = useState(false)
+    const [isRecurring, setIsRecurring] = useState(false)
+    const [recurrenceInterval, setRecurrenceInterval] = useState('')
 
     useEffect(() => {
         let todoString = localStorage.getItem('todos')
@@ -99,7 +100,7 @@ const NewTask = () => {
 
     const handleSort = (e) => {
         setsortBy(e.target.value)
-        console.log(todos)
+        // console.log(todos)
     }
 
     const handleTag = (e) => {
@@ -133,7 +134,7 @@ const NewTask = () => {
 
     useEffect(() => {
         const interval = setInterval(checkOverDuetask, 6000)
-        console.log(`isOverDue ${checkOverDuetask}`)
+        // console.log(`isOverDue ${checkOverDuetask}`)
         return () => {
             clearInterval(interval)
         }
@@ -203,14 +204,21 @@ const NewTask = () => {
                             </div>
                         </div>
 
-                        
-                        <div>
+
+                        <div className='w-[20%] ml-[4%] fixed h-6'>
+                            <input type="checkbox" className='' onChange={() => setIsRecurring(!isRecurring)}/>
+                            <label htmlFor=""> Recurring</label>
+                            <div className={`${!isRecurring ? 'hidden' : 'block'} flex gap-3 border border-gray-200 w-3/4`}>
+                                <label htmlFor=""><input type="radio" name="recurring" value="daily" /> Daily</label>
+                                <label htmlFor=""><input type="radio" name="recurring" value="weekly" /> Weekly</label>
+                                <label htmlFor=""><input type="radio" name="recurring" value="monthly" /> Monthly</label>
+                            </div>
                         </div>
 
                         <button onClick={handleAdd} className={`block md:hidden bg-violet-500 font-bold text-white p-1 px-6 m-1 rounded-lg hover:text-gray-100 ${todo.length === 0 ? 'bg-violet-500' : 'bg-violet-800 hover:bg-violet-700'}`}>Add</button>
                     </div>
                     {/* <input type="textbox" placeholder='Your task description...' className='md:w-[75%] h-28 ml-32 mt-[-12%]'/> */}
-                    <textarea name="" id="" onChange={handleTextarea} value={description} className='md:w-[70%] h-24 ml-24 mt-[-12%]' placeholder='  Your task description...'></textarea>
+                    <textarea name="" id="" onChange={handleTextarea} value={description} className='md:w-[70%] h-24 ml-24 mt-[-2%]' placeholder='  Your task description...'></textarea>
                 </div>
 
                 <div className='flex flex-col items-center w-[100%] md:w-1/2 min-h-[10%] py-6 border border-violet-500 rounded-xl bg-violet-300 max-h-[60vh] overflow-auto'>
