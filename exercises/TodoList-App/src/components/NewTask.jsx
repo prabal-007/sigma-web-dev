@@ -46,7 +46,7 @@ const NewTask = () => {
 
     const handleAdd = () => {
         if (todo.length !== 0) {
-            setTodos([...todos, { id: uuidv4(), todo, isComplted: false, priority, dueDate, tag, description }])
+            setTodos([...todos, { id: uuidv4(), todo, isComplted: false, priority, dueDate, tag, recurrenceInterval, description }])
             setTodo('')
             // console.log()
         } else {
@@ -131,24 +131,61 @@ const NewTask = () => {
             ))
         )
     }
+    
+    const onChangeValue = (e) => {
+        console.log(e.target.value)
+        setRecurrenceInterval(e.target.value)
+    }
+
+    const getNextduedate = (currentDueDate, recurrenceInterval) => {
+        const nextDueDate = new Date(currentDueDate)
+
+        switch (recurrenceInterval) {
+            case 'daily':
+                nextDueDate.setDate(nextDueDate.getDate() + 1) 
+                break;
+            case 'weekly':
+                nextDueDate.setDate(nextDueDate.getDate() + 7)
+                break;
+            case 'monthly':
+                nextDueDate.setDate(nextDueDate.getMonth() + 1)
+                break; 
+            default:
+                alert('Invalid recurrence interval!')
+        }
+        return nextDueDate
+    }
+
+    const checkAndUpdaterecurringTask = (todos) => {
+        const updatedTodos = todos.map(todo => {
+            if (todo.isRecurring && new Date(todo.dueDate) < new Date()) {
+                return {...todo, dueDate: getNextduedate(todo.dueDate, todo.recurrenceInterval), showFinished: false,
+                };
+            }
+            console.log(todo)
+            return todo
+        })
+        setTodos(updatedTodos)
+    }
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            checkAndUpdaterecurringTask(todos)}, 60000)
+        return () => {
+            clearInterval(interval)
+        }
+    }, [todos])
 
     useEffect(() => {
         const interval = setInterval(checkOverDuetask, 6000)
-        // console.log(`isOverDue ${checkOverDuetask}`)
         return () => {
             clearInterval(interval)
         }
     }, [])
 
-
-    // const isOverDue = (dueDate) => {
-    //     return dueDate < new Date()
-    // }
-
     const sortedtodos = getSorterOrder()
 
     useEffect(() => {
-        // console.log(priority);
     }, [priority, dueDate]);
 
     return (
@@ -208,7 +245,7 @@ const NewTask = () => {
                         <div className='w-[20%] ml-[4%] fixed h-6'>
                             <input type="checkbox" className='' onChange={() => setIsRecurring(!isRecurring)}/>
                             <label htmlFor=""> Recurring</label>
-                            <div className={`${!isRecurring ? 'hidden' : 'block'} flex gap-3 border border-gray-200 w-3/4`}>
+                            <div className={`${!isRecurring ? 'hidden' : 'block'} flex gap-3 border border-gray-200 w-3/4`} onChange={onChangeValue}>
                                 <label htmlFor=""><input type="radio" name="recurring" value="daily" /> Daily</label>
                                 <label htmlFor=""><input type="radio" name="recurring" value="weekly" /> Weekly</label>
                                 <label htmlFor=""><input type="radio" name="recurring" value="monthly" /> Monthly</label>
