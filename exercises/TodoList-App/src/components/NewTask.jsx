@@ -190,14 +190,14 @@ const NewTask = () => {
 
     return (
         <div className="container mx-auto p-6">
-            <div className='p-4 border rounded-lg min-h-[80vh] flex flex-col md:flex-row md:justify-evenly items-center gap-6 bg-violet-800'>
+            <div className='p-4 border rounded-lg min-h-[80vh] flex flex-col md:flex-row md:justify-evenly items-center gap-6 bg-violet-800 dark:bg-gray-900'>
 
-                <div className="addTodo flex flex-col items-center w-full md:w-[36%] border rounded-lg py-3 md:px-2 bg-violet-300">
+                <div className="addTodo flex flex-col items-center w-full md:w-[36%] border rounded-lg py-3 md:px-2 bg-violet-300 dark:bg-slate-400">
                     <h2 className='font-bold text-lg mx-2'>Add New Task</h2>
                     <div className='w-full flex justify-center'>
 
                         <div className='w-[90%] hidden md:flex md:flex-row p-1'>
-                            <input type="text" placeholder='New task' className='w-[75%] m-1 p-2' onChange={handleChange} value={todo} />
+                            <input type="text" placeholder='my new task' className='w-[75%] m-1 p-2 dark:bg-gray-200' onChange={handleChange} value={todo} />
                             {/* <input type="textbox" className='md:w-[80%] h-28'/> */}
                             <button onClick={handleAdd} className={`bg-violet-500 font-bold text-white p-1 px-6 m-1 rounded-lg hover:text-gray-100 ${todo.length === 0 ? 'bg-violet-500' : 'bg-violet-800 hover:bg-violet-700'}`}>Add</button>
                         </div>
@@ -255,10 +255,10 @@ const NewTask = () => {
                         <button onClick={handleAdd} className={`block md:hidden bg-violet-500 font-bold text-white p-1 px-6 m-1 rounded-lg hover:text-gray-100 ${todo.length === 0 ? 'bg-violet-500' : 'bg-violet-800 hover:bg-violet-700'}`}>Add</button>
                     </div>
                     {/* <input type="textbox" placeholder='Your task description...' className='md:w-[75%] h-28 ml-32 mt-[-12%]'/> */}
-                    <textarea name="" id="" onChange={handleTextarea} value={description} className='md:w-[70%] h-24 ml-24 mt-[-2%]' placeholder='  Your task description...'></textarea>
+                    <textarea name="" id="" onChange={handleTextarea} value={description} className='md:w-[70%] h-24 ml-24 mt-[-2%] dark:bg-gray-200' placeholder='  Your task description...'></textarea>
                 </div>
 
-                <div className='flex flex-col items-center w-[100%] md:w-1/2 min-h-[10%] py-6 border border-violet-500 rounded-xl bg-violet-300 max-h-[60vh] overflow-auto'>
+                <div className='flex flex-col items-center w-[100%] md:w-1/2 min-h-[10%] py-6 border border-violet-500 rounded-xl bg-violet-300 dark:bg-slate-400 max-h-[60vh] overflow-auto'>
                     <div className='flex justify-between w-2/3'>
                         <h2 className='font-bold text-lg'>Your Todos</h2>
                         <span><input type="checkbox" onChange={togglefinished} checked={showFinished} /> Show completed Tasks</span>
