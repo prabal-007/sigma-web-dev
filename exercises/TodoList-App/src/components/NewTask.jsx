@@ -21,6 +21,7 @@ const NewTask = () => {
     const [description, setDescription] = useState('')
     const [isRecurring, setIsRecurring] = useState(false)
     const [recurrenceInterval, setRecurrenceInterval] = useState('')
+    const [showAddtodo, setShowAddtodo] = useState(false)
 
     useEffect(() => {
         let todoString = localStorage.getItem('todos')
@@ -131,7 +132,7 @@ const NewTask = () => {
             ))
         )
     }
-    
+
     const onChangeValue = (e) => {
         console.log(e.target.value)
         setRecurrenceInterval(e.target.value)
@@ -142,14 +143,14 @@ const NewTask = () => {
 
         switch (recurrenceInterval) {
             case 'daily':
-                nextDueDate.setDate(nextDueDate.getDate() + 1) 
+                nextDueDate.setDate(nextDueDate.getDate() + 1)
                 break;
             case 'weekly':
                 nextDueDate.setDate(nextDueDate.getDate() + 7)
                 break;
             case 'monthly':
                 nextDueDate.setDate(nextDueDate.getMonth() + 1)
-                break; 
+                break;
             default:
                 alert('Invalid recurrence interval!')
         }
@@ -159,7 +160,8 @@ const NewTask = () => {
     const checkAndUpdaterecurringTask = (todos) => {
         const updatedTodos = todos.map(todo => {
             if (todo.isRecurring && new Date(todo.dueDate) < new Date()) {
-                return {...todo, dueDate: getNextduedate(todo.dueDate, todo.recurrenceInterval), showFinished: false,
+                return {
+                    ...todo, dueDate: getNextduedate(todo.dueDate, todo.recurrenceInterval), showFinished: false,
                 };
             }
             console.log(todo)
@@ -168,9 +170,14 @@ const NewTask = () => {
         setTodos(updatedTodos)
     }
 
+    const isAddTodo = () => {
+        setShowAddtodo(!showAddtodo)
+    }
+
     useEffect(() => {
         const interval = setInterval(() => {
-            checkAndUpdaterecurringTask(todos)}, 60000)
+            checkAndUpdaterecurringTask(todos)
+        }, 60000)
         return () => {
             clearInterval(interval)
         }
@@ -191,31 +198,34 @@ const NewTask = () => {
     return (
         <div className="container mx-auto p-6">
             <div className='p-4 border rounded-lg min-h-[80vh] flex flex-col md:flex-row md:justify-evenly items-center gap-6 bg-violet-800 dark:bg-gray-900'>
+                <button onClick={isAddTodo} className={`md:hidden bg-gray-200 dark:bg-violet-600 dark:text-white font-bold font-mono py-1 px-2 rounded-xl ${showAddtodo && 'hidden'}`}>{!showAddtodo && 'Add New Task'}</button>
 
-                <div className="addTodo flex flex-col items-center w-full md:w-[36%] border rounded-lg py-3 md:px-2 bg-violet-300 dark:bg-slate-400">
-                    <h2 className='font-bold text-lg mx-2'>Add New Task</h2>
-                    <div className='w-full flex justify-center'>
-
-                        <div className='w-[90%] hidden md:flex md:flex-row p-1'>
-                            <input type="text" placeholder='my new task' className='w-[75%] m-1 p-2 dark:bg-gray-200' onChange={handleChange} value={todo} />
-                            {/* <input type="textbox" className='md:w-[80%] h-28'/> */}
-                            <button onClick={handleAdd} className={`bg-violet-500 font-bold text-white p-1 px-6 m-1 rounded-lg hover:text-gray-100 ${todo.length === 0 ? 'bg-violet-500' : 'bg-violet-800 hover:bg-violet-700'}`}>Add</button>
-                        </div>
-
+                <div className={`addTodo md:flex flex-col items-center w-full md:w-[36%] border rounded-lg py-3 md:px-2 bg-violet-300 dark:bg-slate-400 ${!showAddtodo ? 'hidden' : 'flex'}`}>
+                    <div className='flex justify-between px-2 w-full items-center'>
+                        <h2 className='font-bold text-lg mx-2'>Add New Task</h2>
+                        <button onClick={isAddTodo} className={`md:hidden bg-gray-200 dark:bg-violet-600 dark:text-white font-bold font-mono py-1 px-2 rounded-xl`}>{showAddtodo && 'X'}</button>
                     </div>
+                    {/* <div className='w-full flex justify-center'> */}
+
+                    <div className='md:w-[90%] w-[85%] ml-[85%] md:ml-0 hidden md:flex md:flex-row p-1'>
+                        <input type="text" placeholder='my new task' className='w-[75%] m-1 p-2 dark:bg-gray-200' onChange={handleChange} value={todo} />
+                        {/* <input type="textbox" className='md:w-[80%] h-28'/> */}
+                        <button onClick={handleAdd} className={`bg-violet-500 font-bold text-white p-1 px-6 m-1 rounded-lg hover:text-gray-100 ${todo.length === 0 ? 'bg-violet-500' : 'bg-violet-800 hover:bg-violet-700'}`}>Add</button>
+                    </div>
+
+                    {/* </div> */}
 
                     <div className='flex flex-col md:flex-row justify-center items-center w-2/3 md:w-[90%]'>
                         <input type="text" className='w-full m-1 p-2 block md:hidden' onChange={handleChange} value={todo} />
-                        <div className='flex w-full'>
-                            <div className="priority w-fit flex flex-col gap-1 border border-violet-500 p-2 font-mono font-medium">
-                                <h2 className='bg-violet-200 p-1 text-sm'>Priority</h2>
+                        <div className='flex w-full flex-col md:flex-row'>
+                            <div className="priority w-fit flex flex-row md:flex-col gap-2 md:gap-1 md:border border-violet-500 p-2 font-mono font-medium">
+                                <h2 className='bg-violet-200 p-1 text-sm hidden'>Priority</h2>
                                 <button onClick={handlePriority} name='Low' className='flex w-fit items-center text-xs border border-green-400 dark:bg-green-400 rounded-lg py-[2px] px-1'><FcLowPriority />Low</button>
                                 <button onClick={handlePriority} name='Medium' className='flex w-fit items-center text-xs border border-yellow-400 rounded-lg py-[2px] px-1 dark:bg-yellow-300'><FcMediumPriority />Medium</button>
                                 <button onClick={handlePriority} name='High' className='flex w-fit items-center text-xs border border-red-400 rounded-lg py-[2px] px-1 dark:bg-red-500'><FcHighPriority />High</button>
                             </div>
                             {/* <input type="text" className='h-8 m-1 p-2' onChange={handleChange} value={todo} /> */}
-                            <div className='p-2 ml-10 md:ml-3'>
-                                {/* <span>Due Date : </span> */}
+                            <div className='p-2 md:ml-3 w-fit'>
                                 <DatePicker
                                     showIcon
                                     selected={dueDate}
@@ -227,7 +237,7 @@ const NewTask = () => {
                                     isClearable
                                     closeOnScroll={true}
                                     timeFormat='HH:MM'
-                                    timeIntervals={5}
+                                    timeIntervals={30}
                                 />
                             </div>
                             <div className='p-2'>
@@ -242,10 +252,12 @@ const NewTask = () => {
                         </div>
 
 
-                        <div className='w-[20%] ml-[4%] fixed h-6'>
-                            <input type="checkbox" className='' onChange={() => setIsRecurring(!isRecurring)}/>
-                            <label htmlFor=""> Recurring</label>
-                            <div className={`${!isRecurring ? 'hidden' : 'block'} flex gap-3 border border-gray-200 w-3/4`} onChange={onChangeValue}>
+                        <div className='date-class absolute my-1 left-[60%] mt-14 md:mt-2 md:left-[24%] flex flex-row'>
+                            <div className='w-[22%] md:w-[8%] md:fixed ml-[-8%]'>
+                                <input type="checkbox" className='' onChange={() => setIsRecurring(!isRecurring)} />
+                                <label htmlFor=""> Recurring</label>
+                            </div>
+                            <div className={`${!isRecurring ? 'hidden' : 'block'} flex gap-3 border border-gray-200 w-fit md:fixed px-2 -ml-6`} onChange={onChangeValue}>
                                 <label htmlFor=""><input type="radio" name="recurring" value="daily" /> Daily</label>
                                 <label htmlFor=""><input type="radio" name="recurring" value="weekly" /> Weekly</label>
                                 <label htmlFor=""><input type="radio" name="recurring" value="monthly" /> Monthly</label>
@@ -255,12 +267,13 @@ const NewTask = () => {
                         <button onClick={handleAdd} className={`block md:hidden bg-violet-500 font-bold text-white p-1 px-6 m-1 rounded-lg hover:text-gray-100 ${todo.length === 0 ? 'bg-violet-500' : 'bg-violet-800 hover:bg-violet-700'}`}>Add</button>
                     </div>
                     {/* <input type="textbox" placeholder='Your task description...' className='md:w-[75%] h-28 ml-32 mt-[-12%]'/> */}
-                    <textarea name="" id="" onChange={handleTextarea} value={description} className='md:w-[70%] h-24 ml-24 mt-[-2%] dark:bg-gray-200' placeholder='  Your task description...'></textarea>
+                    <textarea name="" id="" onChange={handleTextarea} value={description} className='w-[90%] md:w-[70%] h-24 ml-24 md:mt-[-2%] mt-2 mr-[28%] md:mr-0 dark:bg-gray-200' placeholder='  Your task description...'></textarea>
                 </div>
 
-                <div className='flex flex-col items-center w-[100%] md:w-1/2 min-h-[10%] py-6 border border-violet-500 rounded-xl bg-violet-300 dark:bg-slate-400 max-h-[60vh] overflow-auto'>
-                    <div className='flex justify-between w-2/3'>
-                        <h2 className='font-bold text-lg'>Your Todos</h2>
+                <div className='flex flex-col items-center md:w-1/2 min-h-[10%] py-6 border border-violet-500 rounded-xl bg-violet-300 dark:bg-slate-400 max-h-[60vh] overflow-auto'>
+                    <h2 className='font-bold text-lg block md:hidden mb-1'>Your Todos</h2>
+                    <div className='flex justify-between w-full md:w-2/3 p-4'>
+                        <h2 className='font-bold text-lg hidden md:block'>Your Todos</h2>
                         <span><input type="checkbox" onChange={togglefinished} checked={showFinished} /> Show completed Tasks</span>
                         <select onChange={handleSort} name="" id="">
                             <option value="">Sort By</option>
@@ -273,7 +286,7 @@ const NewTask = () => {
                     {todos.length === 0 && <div>Your todo list is empty!</div>}
 
                     {sortedtodos.map(item => {
-                        return (showFinished || !item.isComplted) && <div key={item.id} className="todos w-2/3">
+                        return (showFinished || !item.isComplted) && <div key={item.id} className="todos w-full md:w-2/3">
 
                             <div className={`todo flex justify-between border-2 ${item.isOverDue && !item.isComplted ? 'border-red-600 bg-red-200' : 'border-gray-200 bg-violet-100'}  rounded-md p-2 m-2 max-h-16 overflow-hidden`}>
                                 <div className='flex gap-2'>
@@ -283,7 +296,7 @@ const NewTask = () => {
 
                                 <div className='w-18 flex gap-1'>
 
-                                    {item.tag && <span className='border border-gray-500 bg-gray-400 p-1 rounded-xl'>{item.tag}</span>}
+                                    {item.tag && <span className='hidden md:block border border-gray-500 bg-gray-400 p-1 rounded-xl'>{item.tag}</span>}
                                     {item.priority === 'Low' && <FcLowPriority /> || item.priority === 'High' && <FcHighPriority /> || item.priority === 'Medium' && <FcMediumPriority />}
 
 
