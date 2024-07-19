@@ -207,11 +207,11 @@ const NewTask = () => {
                     <div className='flex flex-col md:flex-row justify-center items-center w-2/3 md:w-[90%]'>
                         <input type="text" className='w-full m-1 p-2 block md:hidden' onChange={handleChange} value={todo} />
                         <div className='flex w-full'>
-                            <div className="priority w-fit flex flex-col gap-1 border p-2">
-                                <h2>Priority</h2>
-                                <button onClick={handlePriority} name='Low' className='flex w-fit items-center text-xs border border-green-400 rounded-lg py-[2px] px-1'><FcLowPriority />Low</button>
-                                <button onClick={handlePriority} name='Medium' className='flex w-fit items-center text-xs border border-yellow-400 rounded-lg py-[2px] px-1'><FcMediumPriority />Medium</button>
-                                <button onClick={handlePriority} name='High' className='flex w-fit items-center text-xs border border-red-400 rounded-lg py-[2px] px-1'><FcHighPriority />High</button>
+                            <div className="priority w-fit flex flex-col gap-1 border border-violet-500 p-2 font-mono font-medium">
+                                <h2 className='bg-violet-200 p-1 text-sm'>Priority</h2>
+                                <button onClick={handlePriority} name='Low' className='flex w-fit items-center text-xs border border-green-400 dark:bg-green-400 rounded-lg py-[2px] px-1'><FcLowPriority />Low</button>
+                                <button onClick={handlePriority} name='Medium' className='flex w-fit items-center text-xs border border-yellow-400 rounded-lg py-[2px] px-1 dark:bg-yellow-300'><FcMediumPriority />Medium</button>
+                                <button onClick={handlePriority} name='High' className='flex w-fit items-center text-xs border border-red-400 rounded-lg py-[2px] px-1 dark:bg-red-500'><FcHighPriority />High</button>
                             </div>
                             {/* <input type="text" className='h-8 m-1 p-2' onChange={handleChange} value={todo} /> */}
                             <div className='p-2 ml-10 md:ml-3'>
