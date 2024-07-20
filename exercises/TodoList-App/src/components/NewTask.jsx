@@ -53,6 +53,7 @@ const NewTask = () => {
         } else {
             alert('Nothing to add')
         }
+        setShowAddtodo(false)
         setDescription('')
         savetoLs()
     }
@@ -252,19 +253,19 @@ const NewTask = () => {
                         </div>
 
 
-                        <div className='date-class absolute my-1 left-[60%] mt-14 md:mt-2 md:left-[24%] flex flex-row'>
-                            <div className='w-[22%] md:w-[8%] md:fixed ml-[-8%]'>
-                                <input type="checkbox" className='' onChange={() => setIsRecurring(!isRecurring)} />
-                                <label htmlFor=""> Recurring</label>
-                            </div>
-                            <div className={`${!isRecurring ? 'hidden' : 'block'} flex gap-3 border border-gray-200 w-fit md:fixed px-2 -ml-6`} onChange={onChangeValue}>
+                        <div className='date-class absolute my-1 left-[60%] mt-[32%] md:mt-2 md:left-[24%] flex flex-col w-full mb-10'>
+                            {/* <div className='w-[22%] md:w-[8%] md:fixed ml-[-8%] mt-[-20px] md:mt-4'> */}
+                                <span className='w-[30%] md:w-[8%] md:fixed ml-[-8%] mt-[-20px] md:mt-4'><input type="checkbox" className='' onChange={() => setIsRecurring(!isRecurring)} />
+                                <label htmlFor=""> Recurring</label></span>
+                            {/* </div> */}
+                            <div className={`${!isRecurring ? 'hidden' : 'block'} flex flex-row fixed ml-[-25%] md:-ml-6 mt-2 md:mt-[18px] gap-3 border border-gray-200 w-fit md:fixed px-2`} onChange={onChangeValue}>
                                 <label htmlFor=""><input type="radio" name="recurring" value="daily" /> Daily</label>
                                 <label htmlFor=""><input type="radio" name="recurring" value="weekly" /> Weekly</label>
                                 <label htmlFor=""><input type="radio" name="recurring" value="monthly" /> Monthly</label>
                             </div>
                         </div>
 
-                        <button onClick={handleAdd} className={`block md:hidden bg-violet-500 font-bold text-white p-1 px-6 m-1 rounded-lg hover:text-gray-100 ${todo.length === 0 ? 'bg-violet-500' : 'bg-violet-800 hover:bg-violet-700'}`}>Add</button>
+                        <button onClick={handleAdd} className={`block md:hidden bg-violet-500 font-bold text-white p-1 px-6 m-1 rounded-lg mt-10 md:mt-0 hover:text-gray-100 ${todo.length === 0 ? 'bg-violet-500' : 'bg-violet-800 hover:bg-violet-700'}`}>Add</button>
                     </div>
                     {/* <input type="textbox" placeholder='Your task description...' className='md:w-[75%] h-28 ml-32 mt-[-12%]'/> */}
                     <textarea name="" id="" onChange={handleTextarea} value={description} className='w-[90%] md:w-[70%] h-24 ml-24 md:mt-[-2%] mt-2 mr-[28%] md:mr-0 dark:bg-gray-200' placeholder='  Your task description...'></textarea>

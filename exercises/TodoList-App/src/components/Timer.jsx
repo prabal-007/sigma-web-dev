@@ -12,7 +12,7 @@ const Timer = () => {
     }, [])
     
   return (
-    <div className='flex justify-center font-mono'>
+    <div className='md:flex justify-center font-mono hidden'>
       {dateTime.toLocaleString()}
     </div>
   )
