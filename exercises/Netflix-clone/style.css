@@ -9,7 +9,7 @@ body {
 }
 
 .section1 {
-    background-image: url(../Netflix-clone/assets/images/bg.jpg);
+    background-image: url(assets/images/bg.jpg);
     background-position: center center;
     background-size: max(1600px, 100vh);
     background-repeat: no-repeat;
